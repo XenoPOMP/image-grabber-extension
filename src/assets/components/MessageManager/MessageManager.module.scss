@@ -1,0 +1,41 @@
+@import "src/assets/styles/templates";
+
+.manager {
+  @extend %flexCenter;
+
+  font-size: 1rem; // 1em = 20px
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--message-manager);
+  padding: 1rem;
+  justify-content: end;
+  align-items: end;
+
+  .messageBody {
+    @extend %flexCenter;
+
+    transform: translateX(150%);
+    background: black;
+    padding: .25rem .75rem;
+    border-radius: .25rem;
+    color: white;
+    max-width: 100%;
+    gap: 1em;
+    pointer-events: all;
+
+    &.shown {
+      transform: translateX(0);
+    }
+
+    svg {
+      @extend %notSelectable;
+
+      // height: 1.25em;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,10 +1,15 @@
 import cn from 'classnames';
+import { checkTargetForNewValues } from 'framer-motion';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from '@pages/MainPage/MainPage.module.scss';
 
 import ProgressiveImage from '@ui/ProgressiveImage/ProgressiveImage';
+
+import { useMessageManager } from '@hooks/useMessageManager';
+
+import { isUndefined } from '@utils/type-checks';
 
 import type { ImageViewProps } from './ImageView.props';
 
@@ -15,6 +20,8 @@ const ImageView: FC<ImageViewProps> = ({
   style,
   loaderColorScheme
 }) => {
+  const { createMessage } = useMessageManager();
+
   return (
     <div>
       <ProgressiveImage
@@ -35,12 +42,25 @@ const ImageView: FC<ImageViewProps> = ({
             xmlns='http://www.w3.org/2000/svg'
             className={cn(styles.download)}
             onClick={() => {
-              chrome.downloads.download(
-                {
+              if (isUndefined(chrome.downloads)) {
+                createMessage({
+                  text: 'Image download failed',
+                  type: 'error'
+                });
+
+                return;
+              }
+
+              chrome.downloads
+                .download({
                   url: src ? src : ''
-                },
-                err => {}
-              );
+                })
+                .catch(err => {
+                  createMessage({
+                    text: 'Image download failed',
+                    type: 'error'
+                  });
+                });
             }}
           >
             <mask

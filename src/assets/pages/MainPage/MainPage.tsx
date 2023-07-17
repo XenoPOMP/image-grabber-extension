@@ -2,6 +2,7 @@ import chunk from 'chunk';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import TextOverflow from 'react-text-overflow';
+import scrapSite from 'ts-website-scrapper';
 
 import ImageView from '@components/ImageView/ImageView';
 import Page from '@components/Page/Page';
@@ -27,6 +28,10 @@ const MainPage = () => {
 
   const [siteName, setSiteName] = useState<string | undefined>(undefined);
 
+  chrome.tabs.getCurrent(tab => {
+    setSiteName(tab?.url);
+  });
+
   const { result, isLoading, run, terminate } = useWebWorker<string[] | null>(
     () => {
       const imageList: string[] = [
@@ -37,6 +42,26 @@ const MainPage = () => {
         ],
         ['src4', 'src5', 'src6']
       ].flat();
+
+      const queryImages: string[] = (() => {
+        const images: string[] = [];
+
+        // scrapSite(siteName, 'html').then(selector => {
+        //   const $ = selector.loader;
+        //   const root = selector.root;
+        //
+        //   $(root)
+        //     .find('img')
+        //     .each((i, elem) => {
+        //       console.log({
+        //         i,
+        //         elem
+        //       });
+        //     });
+        // });
+
+        return images;
+      })();
 
       return imageList;
     }

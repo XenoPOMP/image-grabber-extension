@@ -10,7 +10,8 @@
   "permissions": [
     "tabGroups",
     "tabs",
-    "downloads"
+    "downloads",
+    "scripting"
   ],
   "optional_permissions": [],
   "host_permissions": [],
