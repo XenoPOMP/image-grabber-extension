@@ -1,16 +1,8 @@
-import { enUS } from '@locales/en-US';
-import { ruRU } from '@locales/ru-RU';
-import { Localization } from '@localization/Localization';
-
-import useAppSettings from '@hooks/useAppSettings';
+import { Localization, getChromeLocale } from '@localization/I18Locales';
 
 export const useLocalization = (): Localization => {
-  const { language } = useAppSettings();
-
-  switch (language.get()) {
-    case 'en':
-      return enUS;
-    case 'ru':
-      return ruRU;
-  }
+  return {
+    grabAllImagesLabel: getChromeLocale('grabAllImagesLabel'),
+    grabButton: getChromeLocale('grabButton'),
+  };
 };

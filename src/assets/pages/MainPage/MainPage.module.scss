@@ -1,1 +1,27 @@
 @import "src/assets/styles/templates";
+
+.mainPage {
+  max-height: 100%;
+
+  .label {
+    @extend %notSelectable;
+
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    color: black;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: white;
+
+    .siteName {
+      color: red;
+      background: linear-gradient(90deg, #536976 0%, #292E49 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}

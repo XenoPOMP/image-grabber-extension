@@ -1,9 +1,17 @@
 @import "src/assets/styles/nullstyles";
+@import "src/assets/styles/templates";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  @extend %mainFont;
+
   font-size: 20px;
+}
+
+html {
+  width: 400px;
+  aspect-ratio: 600 / 800;
 }

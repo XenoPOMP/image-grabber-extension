@@ -17,6 +17,9 @@ dist
 dist-ssr
 *.local
 
+# Scripts compiled
+**/.rvt/**/compiled
+
 # Vitest
 coverage/**
 **/__snapshots__/**

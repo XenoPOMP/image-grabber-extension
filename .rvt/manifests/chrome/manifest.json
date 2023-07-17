@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "image-grabber-extension",
+  "description": "Small extension for grabbing all images from page.",
+  "version": "0.0.0",
+  "default_locale": "en",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "tabGroups"
+  ],
+  "optional_permissions": [],
+  "host_permissions": [],
+  "optional_host_permissions": []
+}

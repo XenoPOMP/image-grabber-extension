@@ -1,0 +1,13 @@
+.button {
+  @apply px-1.5 cursor-pointer rounded-[.25rem];
+
+  transition: filter .06s ease;
+
+  &:active {
+    filter: brightness(.85);
+  }
+
+  &.active {
+    @apply bg-blue-500 text-white;
+  }
+}

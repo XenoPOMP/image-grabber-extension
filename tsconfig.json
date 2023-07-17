@@ -31,7 +31,7 @@
       "@type/*": ["src/assets/types/*"],
       "@utils/*": ["src/assets/utils/*"],
       "@media/*": ["src/media/*"],
-      "@errors/*": ["src/assets/errors/*"],
+      "@errors/*": ["src/assets/errors/*"]
     }
   },
   "include": ["src"],
