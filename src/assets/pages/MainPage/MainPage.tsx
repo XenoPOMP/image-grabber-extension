@@ -1,6 +1,6 @@
 import chunk from 'chunk';
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TextOverflow from 'react-text-overflow';
 import scrapSite from 'ts-website-scrapper';
 
@@ -14,58 +14,68 @@ import Block from '@ui/masonry/Block/Block';
 import Column from '@ui/masonry/Column/Column';
 import Masonry from '@ui/masonry/Masonry/Masonry';
 
+import useBoolean from '@hooks/useBoolean';
 import { useLocalization } from '@hooks/useLocalization';
-import { useWebWorker } from '@hooks/useWebWorker';
+import { useMessageManager } from '@hooks/useMessageManager';
 
 import { isUndefined } from '@utils/type-checks';
 
 import styles from './MainPage.module.scss';
 
-import Tab = chrome.tabs.Tab;
-
 const MainPage = () => {
   const loc = useLocalization();
 
+  const { createMessage } = useMessageManager();
+
   const [siteName, setSiteName] = useState<string | undefined>(undefined);
+  /** Replace WebWorker with states and async. */
+  const [result, setResult] = useState<string[] | undefined>(undefined);
+  const [isLoading, toggleIsLoading, setIsLoading] = useBoolean(false);
 
-  chrome.tabs.getCurrent(tab => {
-    setSiteName(tab?.url);
-  });
+  const run = async () => {
+    setIsLoading(true);
 
-  const { result, isLoading, run, terminate } = useWebWorker<string[] | null>(
-    () => {
-      const imageList: string[] = [
-        [
-          'https://i.pinimg.com/originals/5d/0d/29/5d0d2976ed9271ec37cccf43865465d7.jpg',
-          'https://w.forfun.com/fetch/fd/fdae64af844de682575ce06074f0be89.jpeg',
-          'https://image.winudf.com/v2/image/Y29tLkNoaWVmV2FsbHBhcGVycy5MYWIxMDhfc2NyZWVuc2hvdHNfMF8xMjgwYWM4MA/screen-0.jpg?fakeurl=1&type=.jpg'
-        ],
-        ['src4', 'src5', 'src6']
-      ].flat();
+    chrome?.tabs.query({ active: true }, tabs => {
+      const activeTab = tabs[0];
 
-      const queryImages: string[] = (() => {
-        const images: string[] = [];
+      const mockUrl = 'https://9to5answer.com/chrome-can-39-t-load-web-worker';
 
-        // scrapSite(siteName, 'html').then(selector => {
-        //   const $ = selector.loader;
-        //   const root = selector.root;
-        //
-        //   $(root)
-        //     .find('img')
-        //     .each((i, elem) => {
-        //       console.log({
-        //         i,
-        //         elem
-        //       });
-        //     });
-        // });
+      scrapSite(
+        activeTab.url,
+        {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          }
+        },
+        'html'
+      )
+        .then(selector => {
+          const $ = selector.loader;
+          const root = selector.root;
 
-        return images;
-      })();
+          const preResult: typeof result = [];
 
-      return imageList;
-    }
-  );
+          $(root)
+            .find('img')
+            .each((i, elem) => {
+              preResult.push(
+                $(elem).attr('src') ? ($(elem).attr('src') as string) : ''
+              );
+            });
+
+          setResult(preResult);
+        })
+        .catch(err => {
+          createMessage({
+            text: 'Failed to fetch images',
+            type: 'error'
+          });
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    });
+  };
 
   const getImageColumns = (): Record<
     'first' | 'second' | 'third',
@@ -144,9 +154,9 @@ const MainPage = () => {
           >
             <Loader type={'wave'} mainColor={'black'} />
 
-            <Button onClick={terminate} variant={'cancel'}>
-              {loc.cancelGrabbing}
-            </Button>
+            {/*<Button onClick={terminate} variant={'cancel'}>*/}
+            {/*  {loc.cancelGrabbing}*/}
+            {/*</Button>*/}
           </Overlay>
         </div>
 

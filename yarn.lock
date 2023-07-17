@@ -5685,10 +5685,10 @@ ts-node@^10.9.1:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-ts-website-scrapper@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/ts-website-scrapper/-/ts-website-scrapper-1.0.1.tgz#0cc9c0f171021b781d3e77d0df9dd0da11c2e53b"
-  integrity sha512-j6q/cUlI4FNMbuEPJcP8NaTFSy4KxvF1+hNjNjPKb7E9m44RwKDiSXVPGjkFhoO054uP08OgX14+fpuVNF/JHw==
+ts-website-scrapper@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ts-website-scrapper/-/ts-website-scrapper-1.0.6.tgz#30c904f6db5b2965943928d25c7761d497e303c3"
+  integrity sha512-dfGcmTyB5bk5j3mvlEmPzGoGcZU7G0913PU1PWgn/1+ndxkmqqzEDM2Pfp97bk4/Vmlgmb7no/XShTiU1gMTPQ==
   dependencies:
     axios "^1.4.0"
     cheerio "^1.0.0-rc.12"
