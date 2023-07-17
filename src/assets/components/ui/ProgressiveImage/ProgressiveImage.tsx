@@ -15,14 +15,14 @@ const ProgressiveImage: FC<
     const { backgroundColor } = loaderColorScheme;
 
     return {
-      '--loader-background': backgroundColor,
+      '--loader-background': backgroundColor
     } as CSSProperties;
   };
 
   // prettier-ignore
   const [element, setElement] = useState<ReactElement>(
     <div style={getInlineVariables()} className={cn(styles.loader)}>
-			<Loader type={'circle'} mainColor={loaderColorScheme.loaderColor} />
+			<Loader type={loaderColorScheme?.type ? loaderColorScheme?.type : 'circle'} mainColor={loaderColorScheme.loaderColor} />
     </div>
   );
 
@@ -31,7 +31,7 @@ const ProgressiveImage: FC<
     img.src = src ? src : '';
     img.onload = () => {
       setElement(
-        <img className={cn(className)} src={src} alt={alt} style={style} />,
+        <img className={cn(className)} src={src} alt={alt} style={style} />
       );
     };
   }, [src]);

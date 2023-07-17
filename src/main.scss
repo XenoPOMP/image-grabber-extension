@@ -15,3 +15,7 @@ html {
   width: 400px;
   aspect-ratio: 600 / 800;
 }
+
+body {
+  @extend %scrollable;
+}

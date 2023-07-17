@@ -1,13 +1,31 @@
 .button {
+  $animationTransition: .06s ease;
+
   @apply px-1.5 cursor-pointer rounded-[.25rem];
 
-  transition: filter .06s ease;
+  background: rgb(209 213 219 / 1);
+  transition: filter $animationTransition;
 
   &:active {
     filter: brightness(.85);
   }
 
-  &.active {
+  &.normal {
     @apply bg-blue-500 text-white;
+  }
+
+  &.hoverable {
+    $animationTransition: .15s ease;
+
+    transition: filter $animationTransition,
+                background-color $animationTransition,
+                color $animationTransition;
+  }
+
+  &.cancel {
+    &:hover {
+      background: red;
+      color: white;
+    }
   }
 }

@@ -2,12 +2,17 @@ import type { I18Locales } from '../I18Locales';
 
 export const ru: I18Locales = {
   grabAllImagesLabel: {
-    message: 'Захватите все изображения из {SITE_NAME}',
+    message: 'Захватите все изображения',
     description: `Заголовок на главной странице. Замените {SITE_NAME} на текущее название сайта.`
   },
 
   grabButton: {
     message: 'Захватить',
     description: 'Текст кнопки, отвечающей за захват изображений.'
+  },
+
+  cancelGrabbing: {
+    message: 'Отменить',
+    description: 'Текст кнопки, отвечающей за отмену захвата изображений.'
   }
 };

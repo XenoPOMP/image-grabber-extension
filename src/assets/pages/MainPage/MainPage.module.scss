@@ -24,4 +24,75 @@
       -webkit-text-fill-color: transparent;
     }
   }
+
+  .masonry {
+    width: 100%;
+
+    .block {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+
+      &:not(:has(img)) {
+        @extend %flexCenter;
+
+        aspect-ratio: 16/9;
+        cursor: unset;
+
+        .overlayControls {
+          display: none;
+        }
+      }
+
+      &:hover {
+        .overlayControls {
+          bottom: 0;
+        }
+      }
+
+      .overlayControls {
+        @extend %flexCenter;
+
+        $height: 1.25rem;
+        $fontSize: 1rem;
+
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        height: $height;
+        font-size: $fontSize;
+        line-height: $fontSize;
+        background: rgba(0 0 0 / .75);
+        content: "";
+        justify-content: space-between;
+        padding: calc(($height - $fontSize) / 2);
+
+        transition: bottom .5s ease;
+        transition-delay: .15s;
+
+        .group {
+          height: 100%;
+        }
+
+        svg {
+          height: 100%;
+
+          &.download {
+            transition: fill .15s ease;
+
+            &:hover {
+              path {
+                fill: white;
+              }
+            }
+
+            path {
+              fill: #b6b4b4;
+            }
+          }
+        }
+      }
+    }
+  }
 }

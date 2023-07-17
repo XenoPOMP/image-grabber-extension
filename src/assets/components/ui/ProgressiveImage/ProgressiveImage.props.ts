@@ -1,4 +1,6 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, ComponentProps } from 'react';
+
+import Loader from '@ui/Loader/Loader';
 
 export interface ProgressiveImageProps {
   src?: string;
@@ -8,5 +10,6 @@ export interface ProgressiveImageProps {
   loaderColorScheme: {
     backgroundColor: string;
     loaderColor: string;
+    type?: ComponentProps<typeof Loader>['type'];
   };
 }

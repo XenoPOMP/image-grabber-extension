@@ -11,7 +11,7 @@ import skipTestCondition from '@utils/skipTestCondition';
 
 describe.skipIf(skipTestCondition('FRONTEND'))('Overlay component', () => {
   const defaultOptions: RenderOptions = {
-    useRedux: true,
+    useRedux: true
   };
 
   test('Match snapshot', () => {
@@ -19,14 +19,15 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Overlay component', () => {
       <Overlay
         backdrop={{
           blurAmount: 0.5,
-          blurColor: 'rgba(255,255,255,.6)',
+          blurColor: 'rgba(255,255,255,.6)'
         }}
         flexCenter={true}
         trigger={true}
+        id={'some-overlay'}
       />,
       {
-        ...defaultOptions,
-      },
+        ...defaultOptions
+      }
     );
 
     expect(component).toMatchSnapshot();
@@ -36,14 +37,15 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Overlay component', () => {
     const component = renderWithProviders(
       <Overlay
         backdrop={{
-          blurColor: 'rgba(255,255,255,.6)',
+          blurColor: 'rgba(255,255,255,.6)'
         }}
         flexCenter={true}
         trigger={true}
+        id={'some-overlay'}
       />,
       {
-        ...defaultOptions,
-      },
+        ...defaultOptions
+      }
     );
 
     expect(component).toMatchSnapshot();
@@ -53,13 +55,14 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Overlay component', () => {
     const component = renderWithProviders(
       <Overlay
         backdrop={{
-          blurColor: 'rgba(255,255,255,.6)',
+          blurColor: 'rgba(255,255,255,.6)'
         }}
         trigger={true}
+        id={'some-overlay'}
       />,
       {
-        ...defaultOptions,
-      },
+        ...defaultOptions
+      }
     );
 
     expect(component).toMatchSnapshot();

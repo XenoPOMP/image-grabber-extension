@@ -5,10 +5,11 @@ type LocalizationMessage = {
   description: string;
 };
 
-export interface I18Locales {
-  grabAllImagesLabel: LocalizationMessage;
-  grabButton: LocalizationMessage;
-}
+export interface I18Locales
+  extends Record<
+    'grabAllImagesLabel' | 'grabButton' | 'cancelGrabbing',
+    LocalizationMessage
+  > {}
 
 export type Localization = {
   [K in keyof I18Locales]: string;
