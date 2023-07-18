@@ -35,7 +35,17 @@ const MainPage = () => {
   const run = async () => {
     setIsLoading(true);
 
-    chrome?.tabs.query({ active: true }, tabs => {
+    if (isUndefined(chrome?.tabs)) {
+      createMessage({
+        text: 'Chrome API is not responding',
+        type: 'error'
+      });
+
+      setIsLoading(false);
+      return;
+    }
+
+    chrome?.tabs?.query({ active: true }, tabs => {
       const activeTab = tabs[0];
 
       const mockUrl = 'https://9to5answer.com/chrome-can-39-t-load-web-worker';
@@ -103,9 +113,9 @@ const MainPage = () => {
         keywords: ''
       }}
     >
-      <div className={cn(styles.mainPage)}>
-        <div className={cn(styles.label)}>
-          <div>
+      <section className={cn(styles.mainPage)}>
+        <header className={cn(styles.label)}>
+          <h2>
             {loc.grabAllImagesLabel
               .split(/(\{SITE_NAME})/gi)
               .filter(word => {
@@ -127,7 +137,7 @@ const MainPage = () => {
 
                 return <span>{word}</span>;
               })}
-          </div>
+          </h2>
 
           {isUndefined(result) && (
             <Button
@@ -158,9 +168,9 @@ const MainPage = () => {
             {/*  {loc.cancelGrabbing}*/}
             {/*</Button>*/}
           </Overlay>
-        </div>
+        </header>
 
-        <div className={cn(styles.masonry)}>
+        <article className={cn(styles.masonry)}>
           <Masonry className={cn('gap-[.1rem]')}>
             <Column>
               {getImageColumns().first.map((src, index) => {
@@ -231,8 +241,8 @@ const MainPage = () => {
               })}
             </Column>
           </Masonry>
-        </div>
-      </div>
+        </article>
+      </section>
     </Page>
   );
 };

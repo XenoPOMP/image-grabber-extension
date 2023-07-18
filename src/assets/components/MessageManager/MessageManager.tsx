@@ -21,6 +21,8 @@ const MessageManager: FC<MessageManagerProps> = ({}) => {
   const [incompleteMessages, setIncompleteMessages] =
     useState<MessagesState['messages']>(messages);
 
+  const latestMessage: Message = incompleteMessages.reverse()[0];
+
   const [shown, toggleShown, setShown] = useBoolean(false);
 
   useEffect(() => {
@@ -28,10 +30,23 @@ const MessageManager: FC<MessageManagerProps> = ({}) => {
     setShown(messages.map(message => message.completed).includes(false));
   }, [messages]);
 
+  const getInlineClasses = (): string => {
+    const shownClass = shown ? styles.shown : '';
+    let typeClass = '';
+
+    switch (latestMessage?.type) {
+      case 'error': {
+        typeClass = styles.error;
+      }
+    }
+
+    return cn(shownClass, typeClass);
+  };
+
   return (
     <div className={cn(styles.manager)}>
-      <div className={cn(styles.messageBody, shown && styles.shown)}>
-        <TextOverflow text={incompleteMessages.reverse()[0]?.text} />
+      <div className={cn(styles.messageBody, getInlineClasses())}>
+        <TextOverflow text={latestMessage?.text} />
 
         <svg
           height={16}
@@ -40,7 +55,7 @@ const MessageManager: FC<MessageManagerProps> = ({}) => {
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
           onClick={() => {
-            deleteMessage(incompleteMessages.reverse()[0]?.id);
+            deleteMessage(latestMessage?.id);
           }}
         >
           <path

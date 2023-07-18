@@ -38,7 +38,7 @@ const Masonry: FC<
   PropsWith<'className' | 'style' | 'id' | 'children', MasonryProps>
 > = ({ columns, className, style, id, children }) => {
   return (
-    <div
+    <article
       className={cn(styles.masonry, className)}
       style={
         { ...style, '--column-count': columns ? columns : 3 } as CSSProperties
@@ -46,7 +46,7 @@ const Masonry: FC<
       id={id}
     >
       {children}
-    </div>
+    </article>
   );
 };
 

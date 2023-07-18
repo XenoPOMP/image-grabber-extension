@@ -18,6 +18,11 @@
   .messageBody {
     @extend %flexCenter;
 
+    &.error {
+      background: #290000;
+      color: #ff5858;
+    }
+
     transform: translateX(150%);
     background: black;
     padding: .25rem .75rem;
