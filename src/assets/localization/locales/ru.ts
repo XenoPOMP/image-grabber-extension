@@ -14,5 +14,11 @@ export const ru: I18Locales = {
   cancelGrabbing: {
     message: 'Отменить',
     description: 'Текст кнопки, отвечающей за отмену захвата изображений.'
+  },
+
+  chromeApiNotResponding: {
+    message: 'API Chrome не отвечает',
+    description:
+      'Сообщение о том, что приложение не смогло связаться с API Chrome.'
   }
 };

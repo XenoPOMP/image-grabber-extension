@@ -37,8 +37,8 @@ const MainPage = () => {
 
     if (isUndefined(chrome?.tabs)) {
       createMessage({
-        text: 'Chrome API is not responding',
-        type: 'error'
+        text: loc.chromeApiNotResponding,
+        type: 'warn'
       });
 
       setIsLoading(false);
@@ -68,8 +68,14 @@ const MainPage = () => {
           $(root)
             .find('img')
             .each((i, elem) => {
+              const source = $(elem).attr('src')
+                ? ($(elem).attr('src') as string)
+                : '';
+
               preResult.push(
-                $(elem).attr('src') ? ($(elem).attr('src') as string) : ''
+                /^https:\/\/.*/gi.test(source)
+                  ? source // Path is absolute
+                  : new URL(source, activeTab.url).toString() // Path is relative
               );
             });
 
@@ -170,78 +176,76 @@ const MainPage = () => {
           </Overlay>
         </header>
 
-        <article className={cn(styles.masonry)}>
-          <Masonry className={cn('gap-[.1rem]')}>
-            <Column>
-              {getImageColumns().first.map((src, index) => {
-                const columnIndex = 1;
+        <Masonry className={cn(styles.masonry, 'gap-[.1rem]')}>
+          <Column>
+            {getImageColumns().first.map((src, index) => {
+              const columnIndex = 1;
 
-                return (
-                  <Block
-                    key={`block-${columnIndex}-${index}`}
-                    className={cn(styles.block)}
-                  >
-                    <ImageView
-                      loaderColorScheme={{
-                        backgroundColor: 'transparent',
-                        loaderColor: 'black',
-                        type: 'wave'
-                      }}
-                      src={src}
-                      alt={`masonry-column-${columnIndex}-row-${index}`}
-                    />
-                  </Block>
-                );
-              })}
-            </Column>
+              return (
+                <Block
+                  key={`block-${columnIndex}-${index}`}
+                  className={cn(styles.block)}
+                >
+                  <ImageView
+                    loaderColorScheme={{
+                      backgroundColor: 'transparent',
+                      loaderColor: 'black',
+                      type: 'wave'
+                    }}
+                    src={src}
+                    alt={`masonry-column-${columnIndex}-row-${index}`}
+                  />
+                </Block>
+              );
+            })}
+          </Column>
 
-            <Column>
-              {getImageColumns().second.map((src, index) => {
-                const columnIndex = 2;
+          <Column>
+            {getImageColumns().second.map((src, index) => {
+              const columnIndex = 2;
 
-                return (
-                  <Block
-                    key={`block-${columnIndex}-${index}`}
-                    className={cn(styles.block)}
-                  >
-                    <ImageView
-                      loaderColorScheme={{
-                        backgroundColor: 'transparent',
-                        loaderColor: 'black',
-                        type: 'wave'
-                      }}
-                      src={src}
-                      alt={`masonry-column-${columnIndex}-row-${index}`}
-                    />
-                  </Block>
-                );
-              })}
-            </Column>
+              return (
+                <Block
+                  key={`block-${columnIndex}-${index}`}
+                  className={cn(styles.block)}
+                >
+                  <ImageView
+                    loaderColorScheme={{
+                      backgroundColor: 'transparent',
+                      loaderColor: 'black',
+                      type: 'wave'
+                    }}
+                    src={src}
+                    alt={`masonry-column-${columnIndex}-row-${index}`}
+                  />
+                </Block>
+              );
+            })}
+          </Column>
 
-            <Column>
-              {getImageColumns().third.map((src, index) => {
-                const columnIndex = 3;
+          <Column>
+            {getImageColumns().third.map((src, index) => {
+              const columnIndex = 3;
 
-                return (
-                  <Block
-                    key={`block-${columnIndex}-${index}`}
-                    className={cn(styles.block)}
-                  >
-                    <ImageView
-                      loaderColorScheme={{
-                        backgroundColor: 'transparent',
-                        loaderColor: 'black',
-                        type: 'wave'
-                      }}
-                      src={src}
-                      alt={`masonry-column-${columnIndex}-row-${index}`}
-                    />
-                  </Block>
-                );
-              })}
-            </Column>
-          </Masonry>
-        </article>
+              return (
+                <Block
+                  key={`block-${columnIndex}-${index}`}
+                  className={cn(styles.block)}
+                >
+                  <ImageView
+                    loaderColorScheme={{
+                      backgroundColor: 'transparent',
+                      loaderColor: 'black',
+                      type: 'wave'
+                    }}
+                    src={src}
+                    alt={`masonry-column-${columnIndex}-row-${index}`}
+                  />
+                </Block>
+              );
+            })}
+          </Column>
+        </Masonry>
       </section>
     </Page>
   );

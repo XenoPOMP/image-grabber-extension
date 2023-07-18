@@ -14,5 +14,10 @@ export const en: I18Locales = {
   cancelGrabbing: {
     message: 'Cancel',
     description: 'Grab cancel button text.'
+  },
+
+  chromeApiNotResponding: {
+    message: 'Chrome API is not responding',
+    description: 'Chrome API not responding message.'
   }
 };

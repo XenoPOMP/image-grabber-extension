@@ -23,6 +23,11 @@
       color: #ff5858;
     }
 
+    &.warn {
+      background: #332B00;
+      color: #F29F0F;
+    }
+
     transform: translateX(150%);
     background: black;
     padding: .25rem .75rem;

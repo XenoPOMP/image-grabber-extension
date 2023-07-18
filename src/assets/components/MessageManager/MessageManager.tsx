@@ -37,6 +37,12 @@ const MessageManager: FC<MessageManagerProps> = ({}) => {
     switch (latestMessage?.type) {
       case 'error': {
         typeClass = styles.error;
+        break;
+      }
+
+      case 'warn': {
+        typeClass = styles.warn;
+        break;
       }
     }
 

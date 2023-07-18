@@ -7,7 +7,7 @@ export type Message = {
   id: string;
   text: string;
   completed: boolean;
-  type: 'message' | 'error';
+  type: 'message' | 'error' | 'warn';
 };
 
 export type MessagesState = {

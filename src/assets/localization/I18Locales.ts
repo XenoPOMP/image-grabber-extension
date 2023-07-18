@@ -7,7 +7,10 @@ type LocalizationMessage = {
 
 export interface I18Locales
   extends Record<
-    'grabAllImagesLabel' | 'grabButton' | 'cancelGrabbing',
+    | 'grabAllImagesLabel'
+    | 'grabButton'
+    | 'cancelGrabbing'
+    | 'chromeApiNotResponding',
     LocalizationMessage
   > {}
 
