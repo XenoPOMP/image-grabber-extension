@@ -73,7 +73,7 @@ const MainPage = () => {
               );
             });
 
-          setResult(preResult);
+          setResult(Array.from(new Set(preResult)));
         })
         .catch(err => {
           createMessage({

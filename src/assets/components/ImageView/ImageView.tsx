@@ -27,7 +27,7 @@ const ImageView: FC<ImageViewProps> = ({
       <ProgressiveImage
         src={src}
         alt={alt}
-        className={className}
+        className={cn('w-full', className)}
         style={style}
         loaderColorScheme={loaderColorScheme}
       />

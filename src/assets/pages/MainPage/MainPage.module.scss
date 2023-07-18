@@ -33,6 +33,7 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      min-height: 1.5rem;
 
       &:not(:has(img)) {
         @extend %flexCenter;
@@ -47,6 +48,7 @@
 
       &:hover {
         .overlayControls {
+          transform: translateY(0);
           bottom: 0;
         }
       }
@@ -58,7 +60,7 @@
         $fontSize: 1rem;
 
         position: absolute;
-        bottom: -100%;
+        bottom: -500%;
         left: 0;
         width: 100%;
         height: $height;
@@ -69,7 +71,7 @@
         justify-content: space-between;
         padding: calc(($height - $fontSize) / 2);
 
-        transition: bottom .5s ease;
+        transition: bottom .5s ease, transform .5s ease;
         transition-delay: .15s;
 
         .group {
