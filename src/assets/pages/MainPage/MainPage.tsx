@@ -139,7 +139,7 @@ const MainPage = () => {
               })}
           </h2>
 
-          {isUndefined(result) && (
+          {!isLoading && (
             <Button
               onClick={() => {
                 run();
