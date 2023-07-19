@@ -7,7 +7,7 @@ const { DOMAIN } = useEnv();
 
 export const socket: Socket = io(`ws://${DOMAIN}:80`, {
   autoConnect: true,
-  reconnection: true,
+  reconnection: true
 });
 
 export const WebSocketContext = createContext<Socket>(socket);

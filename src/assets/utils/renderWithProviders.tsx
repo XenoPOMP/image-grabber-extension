@@ -52,10 +52,10 @@ const wrapInReactQuery: Wrapper = ui => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        refetchOnWindowFocus: true,
+        refetchOnWindowFocus: true
         // refetchInterval: 5000
-      },
-    },
+      }
+    }
   });
 
   return <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>;
@@ -72,7 +72,7 @@ const renderWithProviders = (ui: JSX.Element, options?: RenderOptions) => {
     useRedux: false,
     useRouter: false,
     useQuery: false,
-    ...options,
+    ...options
   };
   let renderUi: JSX.Element = ui;
 

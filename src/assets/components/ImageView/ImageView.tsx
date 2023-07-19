@@ -1,7 +1,5 @@
 import cn from 'classnames';
-import { checkTargetForNewValues } from 'framer-motion';
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 import styles from '@pages/MainPage/MainPage.module.scss';
 
@@ -18,7 +16,8 @@ const ImageView: FC<ImageViewProps> = ({
   alt,
   className,
   style,
-  loaderColorScheme
+  loaderColorScheme,
+  onClick
 }) => {
   const { createMessage } = useMessageManager();
 
@@ -30,6 +29,11 @@ const ImageView: FC<ImageViewProps> = ({
         className={cn('w-full', className)}
         style={style}
         loaderColorScheme={loaderColorScheme}
+        onClick={() => {
+          if (!isUndefined(onClick)) {
+            onClick();
+          }
+        }}
       />
 
       <div className={cn(styles.overlayControls)}>

@@ -3,7 +3,7 @@ import {
   IAuthTokens,
   TokenRefreshRequest,
   applyAuthTokenInterceptor,
-  getBrowserSessionStorage,
+  getBrowserSessionStorage
 } from 'axios-jwt';
 
 const BASE_URL = 'http://localhost:4200';
@@ -12,14 +12,14 @@ const BASE_URL = 'http://localhost:4200';
  * Default Axios instance.
  */
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: BASE_URL
 });
 
 const requestRefresh: TokenRefreshRequest = async (
-  refreshToken: string,
+  refreshToken: string
 ): Promise<IAuthTokens | string> => {
   const response = await axios.post(`/auth/refresh_token`, {
-    token: refreshToken,
+    token: refreshToken
   });
 
   // return {

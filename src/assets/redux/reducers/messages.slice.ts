@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ReactNode } from 'react';
 
 import type { ReduxAction } from '@redux/types';
 

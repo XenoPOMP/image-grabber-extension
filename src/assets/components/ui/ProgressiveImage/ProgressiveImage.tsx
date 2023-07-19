@@ -10,7 +10,7 @@ import { ProgressiveImageProps } from './ProgressiveImage.props';
 
 const ProgressiveImage: FC<
   PropsWith<'className' | 'style', ProgressiveImageProps>
-> = ({ src, alt, className, style, loaderColorScheme }) => {
+> = ({ src, alt, className, style, loaderColorScheme, onClick }) => {
   const getInlineVariables = (): CSSProperties => {
     const { backgroundColor } = loaderColorScheme;
 
@@ -31,7 +31,13 @@ const ProgressiveImage: FC<
     img.src = src ? src : '';
     img.onload = () => {
       setElement(
-        <img className={cn(className)} src={src} alt={alt} style={style} />
+        <img
+          className={cn(className)}
+          src={src}
+          alt={alt}
+          style={style}
+          onClick={onClick}
+        />
       );
     };
   }, [src]);

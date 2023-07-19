@@ -1,25 +1,26 @@
 import { Slider } from '@mui/material';
-import chunk from 'chunk';
 import cn from 'classnames';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import ImageView from '@components/ImageView/ImageView';
 import Page from '@components/Page/Page';
 
 import Button from '@ui/Button/Button';
+import useGallery from '@ui/Gallery/Gallery';
 import Loader from '@ui/Loader/Loader';
 import Overlay from '@ui/Overlay/Overlay';
 import Block from '@ui/masonry/Block/Block';
 import Column from '@ui/masonry/Column/Column';
 import Masonry from '@ui/masonry/Masonry/Masonry';
 
+import useAppSettings from '@hooks/useAppSettings';
 import useBoolean from '@hooks/useBoolean';
 import { useLocalization } from '@hooks/useLocalization';
 import { useMessageManager } from '@hooks/useMessageManager';
 
-import { Defined } from '@type/Defined';
 import { ImageSearchResult } from '@type/ImageSearchResult';
 
+import { getImageColumns } from '@utils/getImageColumns';
 import { isUndefined } from '@utils/type-checks';
 
 import styles from './MainPage.module.scss';
@@ -27,6 +28,7 @@ import styles from './MainPage.module.scss';
 const MainPage = () => {
   /** This hook provides locale strings. Type-safe. */
   const loc = useLocalization();
+  const { gridSize } = useAppSettings();
 
   /** This hook allows to create messages to user. */
   const { createMessage } = useMessageManager();
@@ -34,9 +36,6 @@ const MainPage = () => {
   /** Replace WebWorker with states and async. */
   const [result, setResult] = useState<ImageSearchResult>(undefined);
   const [isLoading, toggleIsLoading, setIsLoading] = useBoolean(false);
-
-  /** View settings. */
-  const [gridSize, setGridSize] = useState<number>(3);
 
   /** This function runs image grabbing process. */
   const run = async () => {
@@ -106,32 +105,8 @@ const MainPage = () => {
     });
   };
 
-  /**
-   * This function split results to chunks by
-   * certain size, then returns each column as result array.
-   */
-  const getImageColumns = (): typeof result[] => {
-    const chunkedArray =
-      result !== null && result !== undefined ? chunk(result, gridSize) : [];
-
-    let output: Defined<typeof result>[] = [];
-
-    chunkedArray.forEach((group, groupIndex) => {
-      group.forEach((src, blockIndex) => {
-        if (isUndefined(output[blockIndex])) {
-          output[blockIndex] = [];
-        }
-
-        if (isUndefined(output[blockIndex][groupIndex])) {
-          output[blockIndex][groupIndex] = '';
-        }
-
-        output[blockIndex][groupIndex] = src;
-      });
-    });
-
-    return output;
-  };
+  /** Gallery hook. */
+  const { closeGallery, openGallery, isOpen, Gallery } = useGallery();
 
   return (
     <Page
@@ -177,16 +152,16 @@ const MainPage = () => {
         </header>
 
         <Masonry
-          columns={gridSize}
+          columns={gridSize.get()}
           className={cn(styles.masonry, 'gap-[.1rem]')}
         >
-          {getImageColumns().map((col, columnIndex) => {
+          {getImageColumns(result).map((col, columnIndex) => {
             return (
               <Column>
-                {col?.map((src, index) => {
+                {col?.map((src, rowIndex) => {
                   return (
                     <Block
-                      key={`block-${columnIndex}-${index}`}
+                      key={`block-${columnIndex}-${rowIndex}`}
                       className={cn(styles.block)}
                     >
                       <ImageView
@@ -196,7 +171,13 @@ const MainPage = () => {
                           type: 'wave'
                         }}
                         src={src}
-                        alt={`masonry-column-${columnIndex}-row-${index}`}
+                        alt={`masonry-column-${columnIndex}-row-${rowIndex}`}
+                        onClick={() => {
+                          if (!isOpen) {
+                            openGallery(src);
+                            return;
+                          }
+                        }}
                       />
                     </Block>
                   );
@@ -206,9 +187,11 @@ const MainPage = () => {
           })}
         </Masonry>
 
+        <Gallery />
+
         {!isUndefined(result) && result.length > 0 && (
           <footer className={cn(styles.controlsBlock)}>
-            {gridSize}
+            {gridSize.get()}
 
             <Slider
               defaultValue={3}
@@ -216,11 +199,11 @@ const MainPage = () => {
               step={1}
               min={1}
               max={5}
-              value={gridSize}
+              value={gridSize.get()}
               valueLabelDisplay={'off'}
               onChange={ev => {
                 // @ts-ignore
-                setGridSize(ev.target.value);
+                gridSize.set(ev.target.value);
               }}
               getAriaValueText={(value, index) => {
                 return `${index}`;

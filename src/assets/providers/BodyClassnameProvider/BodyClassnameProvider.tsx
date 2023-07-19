@@ -4,7 +4,7 @@ import {
   PropsWithChildren,
   createContext,
   useEffect,
-  useState,
+  useState
 } from 'react';
 
 import { IBodyClassname } from '@providers/BodyClassnameProvider/body-classname.interface';
@@ -14,7 +14,7 @@ import type { BodyClassnameProviderProps } from './BodyClassnameProvider.props';
 export const BodyClassnameContext = createContext<IBodyClassname>({
   classes: {},
   registerClasses: (name, classNames) => {},
-  deleteClasses: name => {},
+  deleteClasses: name => {}
 });
 
 const BodyClassnameProvider: FC<
@@ -41,7 +41,7 @@ const BodyClassnameProvider: FC<
         },
         deleteClasses: name => {
           setClassList({ ...classList, [name]: [] });
-        },
+        }
       }}
     >
       {children}

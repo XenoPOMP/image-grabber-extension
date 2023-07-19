@@ -1,4 +1,4 @@
-import { CSSProperties, ComponentProps } from 'react';
+import { ComponentProps } from 'react';
 
 import Loader from '@ui/Loader/Loader';
 
@@ -12,4 +12,5 @@ export interface ProgressiveImageProps {
     loaderColor: string;
     type?: ComponentProps<typeof Loader>['type'];
   };
+  onClick?: () => any;
 }
