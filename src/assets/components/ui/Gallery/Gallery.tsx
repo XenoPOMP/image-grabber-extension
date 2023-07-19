@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { copyImageToClipboard } from 'copy-image-clipboard';
-import { FC, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
+import TextOverflow from 'react-text-overflow';
 import { v4 as uuid } from 'uuid';
 
 import Overlay from '@ui/Overlay/Overlay';
@@ -10,6 +11,8 @@ import useBoolean from '@hooks/useBoolean';
 import { useLocalization } from '@hooks/useLocalization';
 import { useMessageManager } from '@hooks/useMessageManager';
 
+import { ArrayType } from '@type/ArrayType';
+import { ImageSearchResult } from '@type/ImageSearchResult';
 import { PropsWith } from '@type/PropsWith';
 
 import { isUndefined } from '@utils/type-checks';
@@ -23,14 +26,46 @@ export const useGallery = (): {
   Gallery: FC<{}>;
 } => {
   const [shown, toggleShown, setShown] = useBoolean(false);
-  const [displayingImage, setDisplayingImage] = useState<string | undefined>(
-    undefined
-  );
+  const [displayingImage, setDisplayingImage] =
+    useState<ArrayType<ImageSearchResult>>(undefined);
 
   const [isInfoShown, toggleIsInfoShown, setIsInfoShown] = useBoolean(false);
 
+  useEffect(() => {
+    setIsInfoShown(false);
+  }, [shown]);
+
   const { createMessage } = useMessageManager();
   const loc = useLocalization();
+
+  const getFileName = () => {
+    const fileNamePattern = /.*(?=(\w+\.\w+))$/i;
+
+    const name = '';
+    const extension = '';
+
+    return {
+      name,
+      extension
+    };
+  };
+
+  const fileName = useCallback<
+    () => {
+      name: string;
+      extension: string;
+    }
+  >(() => {
+    const fileNamePattern = /.*(?=(\w+\.\w+))$/i;
+
+    const name = '';
+    const extension = '';
+
+    return {
+      name,
+      extension
+    };
+  }, [displayingImage]);
 
   const Gallery: ReturnType<typeof useGallery>['Gallery'] = ({}) => {
     const Button: FC<
@@ -111,9 +146,28 @@ export const useGallery = (): {
             </Button>
           </header>
 
-          <div className={cn(styles.body)}>
+          <article className={cn(styles.body)}>
             {isInfoShown ? (
-              <></>
+              <div className={cn(styles.infoBlock)}>
+                <div className={cn(styles.content)}>
+                  <b className={cn(styles.label)}>
+                    <TextOverflow text={loc.infoFilename} />
+                  </b>
+                  <div className={cn(styles.text)}>{getFileName().name}</div>
+
+                  <b className={cn(styles.label)}>
+                    <TextOverflow text={loc.infoExtension} />
+                  </b>
+                  <div className={cn(styles.text)}>
+                    {getFileName().extension}
+                  </div>
+
+                  <b className={cn(styles.label)}>
+                    <TextOverflow text={loc.infoFileSize} />
+                  </b>
+                  <div className={cn(styles.text)}>Text</div>
+                </div>
+              </div>
             ) : (
               <ProgressiveImage
                 loaderColorScheme={{
@@ -124,7 +178,7 @@ export const useGallery = (): {
                 src={displayingImage}
               />
             )}
-          </div>
+          </article>
 
           <footer>
             <section>

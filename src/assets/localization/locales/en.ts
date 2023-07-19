@@ -39,5 +39,25 @@ export const en: I18Locales = {
   failedImageCopy: {
     message: 'Failed to copy image',
     description: 'Image copy fail message.'
+  },
+
+  infoFilename: {
+    message: 'File name',
+    description: 'File name label in info.'
+  },
+
+  infoExtension: {
+    message: 'Extension',
+    description: 'Extension label in info.'
+  },
+
+  infoFileSize: {
+    message: 'File size',
+    description: 'File size label in info.'
+  },
+
+  infoSource: {
+    message: 'Source',
+    description: 'Source label in info.'
   }
 };

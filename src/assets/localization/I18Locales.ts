@@ -14,7 +14,11 @@ export interface I18Locales
     | 'noActiveTab'
     | 'failedToDownloadFile'
     | 'imageCopied'
-    | 'failedImageCopy',
+    | 'failedImageCopy'
+    | 'infoFilename'
+    | 'infoExtension'
+    | 'infoFileSize'
+    | 'infoSource',
     LocalizationMessage
   > {}
 

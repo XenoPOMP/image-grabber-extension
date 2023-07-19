@@ -9,6 +9,10 @@ export const useLocalization = (): Localization => {
     noActiveTab: getChromeLocale('noActiveTab'),
     failedToDownloadFile: getChromeLocale('failedToDownloadFile'),
     imageCopied: getChromeLocale('imageCopied'),
-    failedImageCopy: getChromeLocale('failedImageCopy')
+    failedImageCopy: getChromeLocale('failedImageCopy'),
+    infoFilename: getChromeLocale('infoFilename'),
+    infoExtension: getChromeLocale('infoExtension'),
+    infoFileSize: getChromeLocale('infoFileSize'),
+    infoSource: getChromeLocale('infoSource')
   };
 };

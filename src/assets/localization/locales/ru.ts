@@ -43,5 +43,25 @@ export const ru: I18Locales = {
     message: 'Ошибка при копировании',
     description:
       'Сообщение о том, произошла ошибка при копировании изображения.'
+  },
+
+  infoFilename: {
+    message: 'Название файла',
+    description: 'Надпись рядом с названием файла.'
+  },
+
+  infoExtension: {
+    message: 'Расширение',
+    description: 'Надпись рядом с названием расширением файла.'
+  },
+
+  infoFileSize: {
+    message: 'Размер файла',
+    description: 'Надпись рядом с названием размером файла.'
+  },
+
+  infoSource: {
+    message: 'Источник',
+    description: 'Надпись рядом с названием источником файла.'
   }
 };
