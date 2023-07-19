@@ -251,7 +251,7 @@ const MainPage = () => {
           </Column>
         </Masonry>
 
-        {((!isUndefined(result) && result.length > 0) || true) && (
+        {!isUndefined(result) && result.length > 0 && (
           <footer className={cn(styles.controlsBlock)}>
             {gridSize}
 
