@@ -67,8 +67,8 @@ const MainPage = () => {
        * This function grabs all images from page and return
        * paths of them.
        */
-      const grabImages = (): string[] => {
-        const images: string[] = Array.from(
+      const grabImages = (): typeof result => {
+        const images: typeof result = Array.from(
           document.querySelectorAll('img')
         ).map(img => img.src);
 
@@ -174,7 +174,7 @@ const MainPage = () => {
 
         <Masonry className={cn(styles.masonry, 'gap-[.1rem]')}>
           <Column>
-            {getImageColumns().first?.map((image, index) => {
+            {getImageColumns().first?.map((src, index) => {
               const columnIndex = 1;
 
               return (
@@ -188,12 +188,8 @@ const MainPage = () => {
                       loaderColor: 'black',
                       type: 'wave'
                     }}
-                    src={image?.src}
-                    alt={
-                      image?.alt
-                        ? image.alt
-                        : `masonry-column-${columnIndex}-row-${index}`
-                    }
+                    src={src}
+                    alt={`masonry-column-${columnIndex}-row-${index}`}
                   />
                 </Block>
               );
@@ -201,7 +197,7 @@ const MainPage = () => {
           </Column>
 
           <Column>
-            {getImageColumns().second?.map((image, index) => {
+            {getImageColumns().second?.map((src, index) => {
               const columnIndex = 2;
 
               return (
@@ -215,12 +211,8 @@ const MainPage = () => {
                       loaderColor: 'black',
                       type: 'wave'
                     }}
-                    src={image?.src}
-                    alt={
-                      image?.alt
-                        ? image.alt
-                        : `masonry-column-${columnIndex}-row-${index}`
-                    }
+                    src={src}
+                    alt={`masonry-column-${columnIndex}-row-${index}`}
                   />
                 </Block>
               );
@@ -228,7 +220,7 @@ const MainPage = () => {
           </Column>
 
           <Column>
-            {getImageColumns().third?.map((image, index) => {
+            {getImageColumns().third?.map((src, index) => {
               const columnIndex = 3;
 
               return (
@@ -242,12 +234,8 @@ const MainPage = () => {
                       loaderColor: 'black',
                       type: 'wave'
                     }}
-                    src={image?.src}
-                    alt={
-                      image?.alt
-                        ? image.alt
-                        : `masonry-column-${columnIndex}-row-${index}`
-                    }
+                    src={src}
+                    alt={`masonry-column-${columnIndex}-row-${index}`}
                   />
                 </Block>
               );
