@@ -1,7 +1,7 @@
 import { Slider } from '@mui/material';
 import chunk from 'chunk';
 import cn from 'classnames';
-import { ComponentProps, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import ImageView from '@components/ImageView/ImageView';
 import Page from '@components/Page/Page';
@@ -110,28 +110,27 @@ const MainPage = () => {
    * This function split results to chunks by
    * certain size, then returns each column as result array.
    */
-  const getImageColumns = (): Record<
-    'first' | 'second' | 'third',
-    typeof result
-  > => {
-    const chunkedImageArray: typeof result[] =
-      result !== null && result !== undefined ? chunk(result, 3) : [];
+  const getImageColumns = (): typeof result[] => {
+    const chunkedArray =
+      result !== null && result !== undefined ? chunk(result, gridSize) : [];
 
-    const firstColumn: typeof result = chunkedImageArray.map(chunk =>
-      !isUndefined(chunk) ? chunk[0] : undefined
-    );
-    const secondColumn: typeof result = chunkedImageArray.map(chunk =>
-      !isUndefined(chunk) ? chunk[1] : undefined
-    );
-    const thirdColumn: typeof result = chunkedImageArray.map(chunk =>
-      !isUndefined(chunk) ? chunk[2] : undefined
-    );
+    let output: Defined<typeof result>[] = [];
 
-    return {
-      first: firstColumn,
-      second: secondColumn,
-      third: thirdColumn
-    };
+    chunkedArray.forEach((group, groupIndex) => {
+      group.forEach((src, blockIndex) => {
+        if (isUndefined(output[blockIndex])) {
+          output[blockIndex] = [];
+        }
+
+        if (isUndefined(output[blockIndex][groupIndex])) {
+          output[blockIndex][groupIndex] = '';
+        }
+
+        output[blockIndex][groupIndex] = src;
+      });
+    });
+
+    return output;
   };
 
   return (
@@ -181,74 +180,30 @@ const MainPage = () => {
           columns={gridSize}
           className={cn(styles.masonry, 'gap-[.1rem]')}
         >
-          <Column>
-            {getImageColumns().first?.map((src, index) => {
-              const columnIndex = 1;
-
-              return (
-                <Block
-                  key={`block-${columnIndex}-${index}`}
-                  className={cn(styles.block)}
-                >
-                  <ImageView
-                    loaderColorScheme={{
-                      backgroundColor: 'transparent',
-                      loaderColor: 'black',
-                      type: 'wave'
-                    }}
-                    src={src}
-                    alt={`masonry-column-${columnIndex}-row-${index}`}
-                  />
-                </Block>
-              );
-            })}
-          </Column>
-
-          <Column>
-            {getImageColumns().second?.map((src, index) => {
-              const columnIndex = 2;
-
-              return (
-                <Block
-                  key={`block-${columnIndex}-${index}`}
-                  className={cn(styles.block)}
-                >
-                  <ImageView
-                    loaderColorScheme={{
-                      backgroundColor: 'transparent',
-                      loaderColor: 'black',
-                      type: 'wave'
-                    }}
-                    src={src}
-                    alt={`masonry-column-${columnIndex}-row-${index}`}
-                  />
-                </Block>
-              );
-            })}
-          </Column>
-
-          <Column>
-            {getImageColumns().third?.map((src, index) => {
-              const columnIndex = 3;
-
-              return (
-                <Block
-                  key={`block-${columnIndex}-${index}`}
-                  className={cn(styles.block)}
-                >
-                  <ImageView
-                    loaderColorScheme={{
-                      backgroundColor: 'transparent',
-                      loaderColor: 'black',
-                      type: 'wave'
-                    }}
-                    src={src}
-                    alt={`masonry-column-${columnIndex}-row-${index}`}
-                  />
-                </Block>
-              );
-            })}
-          </Column>
+          {getImageColumns().map((col, columnIndex) => {
+            return (
+              <Column>
+                {col?.map((src, index) => {
+                  return (
+                    <Block
+                      key={`block-${columnIndex}-${index}`}
+                      className={cn(styles.block)}
+                    >
+                      <ImageView
+                        loaderColorScheme={{
+                          backgroundColor: 'transparent',
+                          loaderColor: 'black',
+                          type: 'wave'
+                        }}
+                        src={src}
+                        alt={`masonry-column-${columnIndex}-row-${index}`}
+                      />
+                    </Block>
+                  );
+                })}
+              </Column>
+            );
+          })}
         </Masonry>
 
         {!isUndefined(result) && result.length > 0 && (
