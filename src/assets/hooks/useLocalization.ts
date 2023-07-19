@@ -5,6 +5,7 @@ export const useLocalization = (): Localization => {
     grabAllImagesLabel: getChromeLocale('grabAllImagesLabel'),
     grabButton: getChromeLocale('grabButton'),
     cancelGrabbing: getChromeLocale('cancelGrabbing'),
-    chromeApiNotResponding: getChromeLocale('chromeApiNotResponding')
+    chromeApiNotResponding: getChromeLocale('chromeApiNotResponding'),
+    noActiveTab: getChromeLocale('noActiveTab')
   };
 };

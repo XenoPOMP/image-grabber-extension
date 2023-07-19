@@ -48,48 +48,44 @@ const MainPage = () => {
     chrome?.tabs?.query({ active: true }, tabs => {
       const activeTab = tabs[0];
 
-      const mockUrl = 'https://9to5answer.com/chrome-can-39-t-load-web-worker';
-
-      scrapSite(
-        activeTab.url,
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
-        },
-        'html'
-      )
-        .then(selector => {
-          const $ = selector.loader;
-          const root = selector.root;
-
-          const preResult: typeof result = [];
-
-          $(root)
-            .find('img')
-            .each((i, elem) => {
-              const source = $(elem).attr('src')
-                ? ($(elem).attr('src') as string)
-                : '';
-
-              preResult.push(
-                /^https:\/\/.*/gi.test(source)
-                  ? source // Path is absolute
-                  : new URL(source, activeTab.url).toString() // Path is relative
-              );
-            });
-
-          setResult(Array.from(new Set(preResult)));
-        })
-        .catch(err => {
-          createMessage({
-            text: 'Failed to fetch images',
-            type: 'error'
-          });
-        })
-        .finally(() => {
-          setIsLoading(false);
+      if (!activeTab) {
+        createMessage({
+          text: loc.noActiveTab,
+          type: 'warn'
         });
+
+        setIsLoading(false);
+        return;
+      }
+
+      const grabImages = (): string[] => {
+        const images: string[] = Array.from(
+          document.querySelectorAll('img')
+        ).map(img => img.src);
+
+        return [...images];
+      };
+
+      chrome.scripting.executeScript(
+        {
+          target: {
+            tabId: activeTab.id as number,
+            allFrames: true
+          },
+          func: grabImages
+        },
+        results => {
+          const preload: typeof result = [];
+
+          results.map(entry => {
+            preload.push(...entry.result);
+          });
+
+          setResult(preload);
+        }
+      );
+
+      setIsLoading(false);
     });
   };
 

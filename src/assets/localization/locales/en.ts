@@ -19,5 +19,10 @@ export const en: I18Locales = {
   chromeApiNotResponding: {
     message: 'Chrome API is not responding',
     description: 'Chrome API not responding message.'
+  },
+
+  noActiveTab: {
+    message: 'No one page is selected!',
+    description: 'Warn message that is displaying if no one page is active now.'
   }
 };

@@ -10,7 +10,8 @@ export interface I18Locales
     | 'grabAllImagesLabel'
     | 'grabButton'
     | 'cancelGrabbing'
-    | 'chromeApiNotResponding',
+    | 'chromeApiNotResponding'
+    | 'noActiveTab',
     LocalizationMessage
   > {}
 

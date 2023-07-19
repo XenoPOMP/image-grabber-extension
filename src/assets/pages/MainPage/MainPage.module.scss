@@ -17,6 +17,8 @@
     background: white;
     z-index: var(--main-page-label);
 
+    transition: height .25s ease;
+
     .siteName {
       color: red;
       background: linear-gradient(90deg, #536976 0%, #292E49 100%);

@@ -20,5 +20,11 @@ export const ru: I18Locales = {
     message: 'API Chrome не отвечает',
     description:
       'Сообщение о том, что приложение не смогло связаться с API Chrome.'
+  },
+
+  noActiveTab: {
+    message: 'Не выбрана ни одна из страниц!',
+    description:
+      'Сообщение о том, что пользователь не выбрал ни одну из страниц.'
   }
 };
