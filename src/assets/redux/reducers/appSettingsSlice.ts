@@ -9,9 +9,9 @@ export type AppSettings = {
 };
 
 const initialState: AppSettings = {
-  appVersion: '0.0.0',
+  appVersion: '1.0.0',
   appName: 'React Vite Application',
-  language: 'en',
+  language: 'en'
 };
 
 const appSettingsSlice = createSlice({
@@ -21,8 +21,8 @@ const appSettingsSlice = createSlice({
     /** Change language with action. */
     changeLang(state, action: ReduxAction<AppSettings['language']>) {
       state.language = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export default appSettingsSlice.reducer;
