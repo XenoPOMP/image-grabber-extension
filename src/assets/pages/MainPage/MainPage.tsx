@@ -251,8 +251,10 @@ const MainPage = () => {
           </Column>
         </Masonry>
 
-        {!isUndefined(result) && result.length > 0 && (
-          <section className={cn(styles.controlsBlock)}>
+        {((!isUndefined(result) && result.length > 0) || true) && (
+          <footer className={cn(styles.controlsBlock)}>
+            {gridSize}
+
             <Slider
               defaultValue={3}
               marks
@@ -269,7 +271,7 @@ const MainPage = () => {
                 return `${index}`;
               }}
             />
-          </section>
+          </footer>
         )}
       </section>
     </Page>
