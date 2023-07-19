@@ -65,7 +65,7 @@
         bottom: -500%;
         left: 0;
         width: 100%;
-        height: $height;
+        height: min($height, 50%);
         font-size: $fontSize;
         line-height: $fontSize;
         background: rgba(0 0 0 / .75);
@@ -73,7 +73,7 @@
         justify-content: space-between;
         padding: calc(($height - $fontSize) / 2);
 
-        transition: bottom .5s ease, transform .5s ease;
+        transition: bottom .5s ease, transform .4s ease;
         transition-delay: .15s;
 
         .group {

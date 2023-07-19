@@ -1,8 +1,6 @@
 import chunk from 'chunk';
 import cn from 'classnames';
 import { useState } from 'react';
-import TextOverflow from 'react-text-overflow';
-import scrapSite from 'ts-website-scrapper';
 
 import ImageView from '@components/ImageView/ImageView';
 import Page from '@components/Page/Page';
@@ -18,23 +16,28 @@ import useBoolean from '@hooks/useBoolean';
 import { useLocalization } from '@hooks/useLocalization';
 import { useMessageManager } from '@hooks/useMessageManager';
 
+import { ImageSearchResult } from '@type/ImageSearchResult';
+
 import { isUndefined } from '@utils/type-checks';
 
 import styles from './MainPage.module.scss';
 
 const MainPage = () => {
+  /** This hook provides locale strings. Type-safe. */
   const loc = useLocalization();
 
+  /** This hook allows to create messages to user. */
   const { createMessage } = useMessageManager();
 
-  const [siteName, setSiteName] = useState<string | undefined>(undefined);
   /** Replace WebWorker with states and async. */
-  const [result, setResult] = useState<string[] | undefined>(undefined);
+  const [result, setResult] = useState<ImageSearchResult>(undefined);
   const [isLoading, toggleIsLoading, setIsLoading] = useBoolean(false);
 
+  /** This function runs image grabbing process. */
   const run = async () => {
     setIsLoading(true);
 
+    /** If app can`t connect to Chrome API, terminate loading. */
     if (isUndefined(chrome?.tabs)) {
       createMessage({
         text: loc.chromeApiNotResponding,
@@ -45,9 +48,11 @@ const MainPage = () => {
       return;
     }
 
+    /** Else use API to get current page`s content. */
     chrome?.tabs?.query({ active: true }, tabs => {
       const activeTab = tabs[0];
 
+      /** Active tab is not found. */
       if (!activeTab) {
         createMessage({
           text: loc.noActiveTab,
@@ -58,6 +63,10 @@ const MainPage = () => {
         return;
       }
 
+      /**
+       * This function grabs all images from page and return
+       * paths of them.
+       */
       const grabImages = (): string[] => {
         const images: string[] = Array.from(
           document.querySelectorAll('img')
@@ -66,6 +75,9 @@ const MainPage = () => {
         return [...images];
       };
 
+      /**
+       * Inject and execute script on the active page.
+       */
       chrome.scripting.executeScript(
         {
           target: {
@@ -89,16 +101,26 @@ const MainPage = () => {
     });
   };
 
+  /**
+   * This function split results to chunks by
+   * certain size, then returns each column as result array.
+   */
   const getImageColumns = (): Record<
     'first' | 'second' | 'third',
-    string[]
+    typeof result
   > => {
-    const chunkedImageArray: string[][] =
+    const chunkedImageArray: typeof result[] =
       result !== null && result !== undefined ? chunk(result, 3) : [];
 
-    const firstColumn: string[] = chunkedImageArray.map(chunk => chunk[0]);
-    const secondColumn: string[] = chunkedImageArray.map(chunk => chunk[1]);
-    const thirdColumn: string[] = chunkedImageArray.map(chunk => chunk[2]);
+    const firstColumn: typeof result = chunkedImageArray.map(chunk =>
+      !isUndefined(chunk) ? chunk[0] : undefined
+    );
+    const secondColumn: typeof result = chunkedImageArray.map(chunk =>
+      !isUndefined(chunk) ? chunk[1] : undefined
+    );
+    const thirdColumn: typeof result = chunkedImageArray.map(chunk =>
+      !isUndefined(chunk) ? chunk[2] : undefined
+    );
 
     return {
       first: firstColumn,
@@ -117,29 +139,7 @@ const MainPage = () => {
     >
       <section className={cn(styles.mainPage)}>
         <header className={cn(styles.label)}>
-          <h2>
-            {loc.grabAllImagesLabel
-              .split(/(\{SITE_NAME})/gi)
-              .filter(word => {
-                return word !== '';
-              })
-              .map(word => {
-                if (/\{SITE_NAME}/gi.test(word)) {
-                  return (
-                    <span
-                      className={cn(styles.siteName)}
-                      style={{
-                        maxWidth: '10rem'
-                      }}
-                    >
-                      <TextOverflow text={siteName ? siteName : ''} />
-                    </span>
-                  );
-                }
-
-                return <span>{word}</span>;
-              })}
-          </h2>
+          <h2>{loc.grabAllImagesLabel}</h2>
 
           {!isLoading && (
             <Button
@@ -174,7 +174,7 @@ const MainPage = () => {
 
         <Masonry className={cn(styles.masonry, 'gap-[.1rem]')}>
           <Column>
-            {getImageColumns().first.map((src, index) => {
+            {getImageColumns().first?.map((image, index) => {
               const columnIndex = 1;
 
               return (
@@ -188,8 +188,12 @@ const MainPage = () => {
                       loaderColor: 'black',
                       type: 'wave'
                     }}
-                    src={src}
-                    alt={`masonry-column-${columnIndex}-row-${index}`}
+                    src={image?.src}
+                    alt={
+                      image?.alt
+                        ? image.alt
+                        : `masonry-column-${columnIndex}-row-${index}`
+                    }
                   />
                 </Block>
               );
@@ -197,7 +201,7 @@ const MainPage = () => {
           </Column>
 
           <Column>
-            {getImageColumns().second.map((src, index) => {
+            {getImageColumns().second?.map((image, index) => {
               const columnIndex = 2;
 
               return (
@@ -211,8 +215,12 @@ const MainPage = () => {
                       loaderColor: 'black',
                       type: 'wave'
                     }}
-                    src={src}
-                    alt={`masonry-column-${columnIndex}-row-${index}`}
+                    src={image?.src}
+                    alt={
+                      image?.alt
+                        ? image.alt
+                        : `masonry-column-${columnIndex}-row-${index}`
+                    }
                   />
                 </Block>
               );
@@ -220,7 +228,7 @@ const MainPage = () => {
           </Column>
 
           <Column>
-            {getImageColumns().third.map((src, index) => {
+            {getImageColumns().third?.map((image, index) => {
               const columnIndex = 3;
 
               return (
@@ -234,8 +242,12 @@ const MainPage = () => {
                       loaderColor: 'black',
                       type: 'wave'
                     }}
-                    src={src}
-                    alt={`masonry-column-${columnIndex}-row-${index}`}
+                    src={image?.src}
+                    alt={
+                      image?.alt
+                        ? image.alt
+                        : `masonry-column-${columnIndex}-row-${index}`
+                    }
                   />
                 </Block>
               );
