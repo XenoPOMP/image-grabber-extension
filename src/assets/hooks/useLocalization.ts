@@ -6,6 +6,7 @@ export const useLocalization = (): Localization => {
     grabButton: getChromeLocale('grabButton'),
     cancelGrabbing: getChromeLocale('cancelGrabbing'),
     chromeApiNotResponding: getChromeLocale('chromeApiNotResponding'),
-    noActiveTab: getChromeLocale('noActiveTab')
+    noActiveTab: getChromeLocale('noActiveTab'),
+    failedToDownloadFile: getChromeLocale('failedToDownloadFile')
   };
 };

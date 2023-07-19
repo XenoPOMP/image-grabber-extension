@@ -24,5 +24,10 @@ export const en: I18Locales = {
   noActiveTab: {
     message: 'No one page is selected!',
     description: 'Warn message that is displaying if no one page is active now.'
+  },
+
+  failedToDownloadFile: {
+    message: 'File download failed',
+    description: 'File downloading error message.'
   }
 };

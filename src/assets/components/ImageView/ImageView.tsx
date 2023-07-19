@@ -5,6 +5,7 @@ import styles from '@pages/MainPage/MainPage.module.scss';
 
 import ProgressiveImage from '@ui/ProgressiveImage/ProgressiveImage';
 
+import { useLocalization } from '@hooks/useLocalization';
 import { useMessageManager } from '@hooks/useMessageManager';
 
 import { isUndefined } from '@utils/type-checks';
@@ -20,6 +21,7 @@ const ImageView: FC<ImageViewProps> = ({
   onClick
 }) => {
   const { createMessage } = useMessageManager();
+  const loc = useLocalization();
 
   return (
     <div>
@@ -48,8 +50,8 @@ const ImageView: FC<ImageViewProps> = ({
             onClick={() => {
               if (isUndefined(chrome.downloads)) {
                 createMessage({
-                  text: 'Image download failed',
-                  type: 'error'
+                  text: loc.chromeApiNotResponding,
+                  type: 'warn'
                 });
 
                 return;
@@ -61,7 +63,7 @@ const ImageView: FC<ImageViewProps> = ({
                 })
                 .catch(err => {
                   createMessage({
-                    text: 'Image download failed',
+                    text: loc.failedToDownloadFile,
                     type: 'error'
                   });
                 });

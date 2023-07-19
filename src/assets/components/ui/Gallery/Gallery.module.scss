@@ -9,7 +9,6 @@
     height: 100%;
     gap: .5rem;
     display: grid;
-    grid-template-columns: 2rem 1fr 2rem;
     grid-template-rows: 2rem 1fr 2rem;
 
     .hoverable {
@@ -27,15 +26,13 @@
 
     header,
     .body,
-    aside,
     footer {
-      border: 1px solid white;
+      // border: 1px solid white;
       width: 100%;
       height: 100%;
     }
 
     header, footer {
-      grid-column: span 3;
       display: flex;
       justify-content: space-between;
     }

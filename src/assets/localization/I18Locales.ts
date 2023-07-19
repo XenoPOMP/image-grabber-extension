@@ -11,7 +11,8 @@ export interface I18Locales
     | 'grabButton'
     | 'cancelGrabbing'
     | 'chromeApiNotResponding'
-    | 'noActiveTab',
+    | 'noActiveTab'
+    | 'failedToDownloadFile',
     LocalizationMessage
   > {}
 
