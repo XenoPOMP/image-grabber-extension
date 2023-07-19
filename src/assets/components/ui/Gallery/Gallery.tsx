@@ -38,28 +38,23 @@ export const useGallery = (): {
   const { createMessage } = useMessageManager();
   const loc = useLocalization();
 
-  const getFileName = () => {
-    const fileNamePattern = /.*(?=(\w+\.\w+))$/i;
-
-    const name = '';
-    const extension = '';
-
-    return {
-      name,
-      extension
-    };
-  };
-
-  const fileName = useCallback<
+  const getFileName = useCallback<
     () => {
-      name: string;
-      extension: string;
+      name?: string;
+      extension?: string;
     }
   >(() => {
-    const fileNamePattern = /.*(?=(\w+\.\w+))$/i;
+    const fullFileName = /.*\/\w+\.\w+$/gi.test(
+      displayingImage ? displayingImage : ''
+    )
+      ? displayingImage
+          ?.split(/\/{1,2}/gi)
+          ?.at(-1)
+          ?.split(/\./g)
+      : '';
 
-    const name = '';
-    const extension = '';
+    const name = fullFileName?.at(0);
+    const extension = fullFileName?.at(1);
 
     return {
       name,
