@@ -15,8 +15,8 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Lazy loading component', () => {
           element={() => import('@pages/MainPage/MainPage')}
           fallback={<Loader type={'wave'} mainColor={'black'} />}
         />,
-        {},
-      ),
+        {}
+      )
     ).toMatchSnapshot();
   });
 
@@ -27,8 +27,8 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Lazy loading component', () => {
           element={() => import('@pages/MainPage/MainPage')}
           fallback={<Loader type={'circle'} mainColor={'black'} />}
         />,
-        {},
-      ),
+        {}
+      )
     ).toMatchSnapshot();
   });
 
@@ -39,8 +39,8 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Lazy loading component', () => {
           element={() => import('@pages/MainPage/MainPage')}
           fallback={<Loader type={'three-dots'} mainColor={'black'} />}
         />,
-        {},
-      ),
+        {}
+      )
     ).toMatchSnapshot();
   });
 });

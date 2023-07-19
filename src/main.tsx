@@ -4,18 +4,19 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import SplashScreen from '@components/SplashScreen/SplashScreen';
+
 import store, { persistor } from '@redux/index';
 
 import App from './App';
 import './main.scss';
-import SplashScreen from '@components/SplashScreen/SplashScreen';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: true,
-    },
-  },
+      refetchOnWindowFocus: true
+    }
+  }
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -27,5 +28,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </PersistGate>
       </ReduxProvider>
     </QueryClientProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

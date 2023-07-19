@@ -19,7 +19,7 @@ const CircleLoader: FC<CircleLoaderProps> = ({ className }) => {
       transition={{
         duration: 2,
         ease: 'linear',
-        repeat: Infinity,
+        repeat: Infinity
       }}
       width='20'
       height='20'

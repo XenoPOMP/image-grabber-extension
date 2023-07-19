@@ -44,5 +44,5 @@ type ConcatenationVariants<P extends any = unknown> = {
  */
 export type PropsWith<
   C extends keyof ConcatenationVariants<P>,
-  P extends any,
+  P extends any
 > = P & Pick<ConcatenationVariants<P>, C>;

@@ -31,7 +31,7 @@ const getUiSx = (gridSettings: GridSettings): CSSProperties => {
     '--cols': cols ? cols : 12,
     '--rows': rows ? rows : 1,
     '--gap': gap,
-    '--max-width': getMaxWidth() ? getMaxWidth() : '1680px',
+    '--max-width': getMaxWidth() ? getMaxWidth() : '1680px'
   } as CSSProperties;
 };
 

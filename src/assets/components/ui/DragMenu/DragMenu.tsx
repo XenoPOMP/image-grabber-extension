@@ -16,7 +16,7 @@ import type { DragMenuProps } from './DragMenu.props';
 const DragMenu: FC<PropsWithChildren<DragMenuProps>> = ({
   children,
   classNames,
-  axis,
+  axis
 }) => {
   const constraintRef = useRef(null);
 

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 
 import Page from '@components/Page/Page';
@@ -18,8 +18,8 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Page component', () => {
       </Page>,
       {
         useRedux: true,
-        useRouter: true,
-      },
+        useRouter: true
+      }
     );
 
     expect(screen.getByText(/Main page testing/i)).toBeDefined();

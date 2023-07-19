@@ -1,6 +1,5 @@
 import cn from 'classnames';
-import { motion } from 'framer-motion';
-import { FC, ReactNode, createContext, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import TextOverflow from 'react-text-overflow';
 
 import { useAppSelector } from '@redux/hooks';
@@ -8,8 +7,6 @@ import { Message, MessagesState } from '@redux/reducers/messages.slice';
 
 import useBoolean from '@hooks/useBoolean';
 import { useMessageManager } from '@hooks/useMessageManager';
-
-import { ArrayType } from '@type/ArrayType';
 
 import styles from './MessageManager.module.scss';
 import type { MessageManagerProps } from './MessageManager.props';

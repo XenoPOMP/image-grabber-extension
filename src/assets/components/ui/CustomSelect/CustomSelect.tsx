@@ -62,7 +62,7 @@ const CustomSelect: FC<PropsWith<'className', CustomSelectProps>> = ({
   placeholder,
   isMulti,
   className,
-  defaultValue,
+  defaultValue
 }) => {
   const colorStyles: StylesConfig<
     SelectOption,
@@ -86,8 +86,8 @@ const CustomSelect: FC<PropsWith<'className', CustomSelectProps>> = ({
         ':hover': {
           borderColor: !isFocused
             ? 'var(--ui-select-border)'
-            : 'var(--ui-border)',
-        },
+            : 'var(--ui-border)'
+        }
       };
     },
 
@@ -107,7 +107,7 @@ const CustomSelect: FC<PropsWith<'className', CustomSelectProps>> = ({
         backgroundColor:
           isSelected || isFocused
             ? 'var(--ui-select-selection)'
-            : 'var(--ui-select-background)',
+            : 'var(--ui-select-background)'
       };
     },
 
@@ -124,7 +124,7 @@ const CustomSelect: FC<PropsWith<'className', CustomSelectProps>> = ({
           : 'var(--ui-multi-select-def)',
         color: data?.multiColors?.font
           ? data?.multiColors?.font
-          : 'var(--ui-multi-select-font-def)',
+          : 'var(--ui-multi-select-font-def)'
       };
     },
 
@@ -134,7 +134,7 @@ const CustomSelect: FC<PropsWith<'className', CustomSelectProps>> = ({
         ...styles,
         color: data?.multiColors?.font
           ? data?.multiColors?.font
-          : 'var(--ui-multi-select-font-def)',
+          : 'var(--ui-multi-select-font-def)'
       };
     },
 
@@ -149,10 +149,10 @@ const CustomSelect: FC<PropsWith<'className', CustomSelectProps>> = ({
             : 'var(--ui-select-remove-back)',
           color: data?.removeMultiColors?.icon
             ? data?.removeMultiColors?.icon
-            : 'var(--ui-select-remove-icon)',
-        },
+            : 'var(--ui-select-remove-icon)'
+        }
       };
-    },
+    }
   };
 
   return (
@@ -175,8 +175,8 @@ const CustomSelect: FC<PropsWith<'className', CustomSelectProps>> = ({
         colors: {
           ...theme.colors,
           neutral80: 'var(--ui-select-font-base)',
-          neutral0: 'var(--ui-select-background)',
-        },
+          neutral0: 'var(--ui-select-background)'
+        }
       })}
     ></Select>
   );

@@ -1,25 +1,26 @@
 import cn from 'classnames';
-import { FC } from 'react';
 import { motion } from 'framer-motion';
+import { FC } from 'react';
+
+import Loader from '@ui/Loader/Loader';
 
 import styles from './SplashScreen.module.scss';
 import type { SplashScreenProps } from './SplashScreen.props';
-import Loader from '@ui/Loader/Loader';
 
 const SplashScreen: FC<SplashScreenProps> = ({}) => {
   return (
     <motion.div
       initial={{
         opacity: 0,
-        pointerEvents: 'none',
+        pointerEvents: 'none'
       }}
       animate={{
         opacity: 1,
-        pointerEvents: 'all',
+        pointerEvents: 'all'
       }}
       exit={{
         opacity: 0,
-        pointerEvents: 'none',
+        pointerEvents: 'none'
       }}
       className={cn(styles.splashScreen)}
     >

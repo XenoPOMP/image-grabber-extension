@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import Media from 'react-media';
 
 import { PropsWith } from '@type/PropsWith';
@@ -20,7 +20,7 @@ import { MediaWidthViewProps } from './MediaWidthView.props';
 const MediaWidthView: FC<PropsWith<'children', MediaWidthViewProps>> = ({
   children,
   maxWidth,
-  minWidth,
+  minWidth
 }) => {
   useEffect(() => {
     // Min width > Max width

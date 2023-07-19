@@ -22,14 +22,14 @@ export const useKey = (
   options?: {
     control?: boolean;
     shift?: boolean;
-  },
+  }
 ) => {
   const callbackRef = useRef<Parameters<typeof useKey>[1]>(callback);
 
   const defaultOptions: Parameters<typeof useKey>[2] = {
     control: false,
     shift: false,
-    ...options,
+    ...options
   };
 
   useEffect(() => {

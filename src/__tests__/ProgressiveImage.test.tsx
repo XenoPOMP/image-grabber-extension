@@ -15,18 +15,18 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Progressive image', () => {
           <ProgressiveImage
             loaderColorScheme={{
               backgroundColor: 'transparent',
-              loaderColor: 'black',
+              loaderColor: 'black'
             }}
             src={mockImage}
           />
           <ProgressiveImage
             loaderColorScheme={{
               backgroundColor: 'transparent',
-              loaderColor: 'black',
+              loaderColor: 'black'
             }}
           />
-        </>,
-      ),
+        </>
+      )
     ).toMatchSnapshot();
   });
 
@@ -36,11 +36,11 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Progressive image', () => {
         <ProgressiveImage
           loaderColorScheme={{
             backgroundColor: 'transparent',
-            loaderColor: 'black',
+            loaderColor: 'black'
           }}
           src={mockImage}
         />
-      </div>,
+      </div>
     ).asFragment();
 
     image.addEventListener('onload', ev => {

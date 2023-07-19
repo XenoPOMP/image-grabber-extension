@@ -11,8 +11,21 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Draggable menu', () => {
       renderWithProviders(
         <DragMenu axis={'x'}>
           <div>Drag me</div>
-        </DragMenu>,
-      ),
+        </DragMenu>
+      )
+    ).toMatchSnapshot();
+
+    expect(
+      renderWithProviders(
+        <DragMenu
+          axis={'x'}
+          classNames={{
+            constraint: 'parent class'
+          }}
+        >
+          <div>Drag me</div>
+        </DragMenu>
+      )
     ).toMatchSnapshot();
 
     expect(
@@ -21,25 +34,12 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Draggable menu', () => {
           axis={'x'}
           classNames={{
             constraint: 'parent class',
+            draggable: 'child class'
           }}
         >
           <div>Drag me</div>
-        </DragMenu>,
-      ),
-    ).toMatchSnapshot();
-
-    expect(
-      renderWithProviders(
-        <DragMenu
-          axis={'x'}
-          classNames={{
-            constraint: 'parent class',
-            draggable: 'child class',
-          }}
-        >
-          <div>Drag me</div>
-        </DragMenu>,
-      ),
+        </DragMenu>
+      )
     ).toMatchSnapshot();
   });
 });

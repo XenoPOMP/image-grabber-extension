@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { BodyClassnameContext } from '@providers/BodyClassnameProvider/BodyClassnameProvider';
 import { IBodyClassname } from '@providers/BodyClassnameProvider/body-classname.interface';
@@ -22,13 +22,13 @@ import { IBodyClassname } from '@providers/BodyClassnameProvider/body-classname.
  */
 const useBodyClassnames = (): [
   registerClasses: IBodyClassname['registerClasses'],
-  deleteClasses: IBodyClassname['deleteClasses'],
+  deleteClasses: IBodyClassname['deleteClasses']
 ] => {
   const classContext = useContext(BodyClassnameContext);
 
   return [
     (name, classNames) => classContext.registerClasses(name, classNames),
-    name => classContext.deleteClasses(name),
+    name => classContext.deleteClasses(name)
   ];
 };
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 type UseBooleanType = [
   value: boolean,
   toggleValue: () => void,
-  changeValue: (newValue: boolean) => void,
+  changeValue: (newValue: boolean) => void
 ];
 
 const useBoolean = (initialValue?: boolean): UseBooleanType => {
@@ -13,7 +13,7 @@ const useBoolean = (initialValue?: boolean): UseBooleanType => {
   return [
     localValue,
     () => setLocalValue(prevValue => !prevValue),
-    newValue => setLocalValue(newValue),
+    newValue => setLocalValue(newValue)
   ];
 };
 

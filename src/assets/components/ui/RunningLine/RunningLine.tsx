@@ -17,7 +17,7 @@ const RunningLine: FC<
     scrollSpeed: 6,
     scrollDelay: 85,
     verticalAlign: false,
-    ...props,
+    ...props
   };
 
   const {
@@ -29,7 +29,7 @@ const RunningLine: FC<
     style,
     className,
     verticalAlign,
-    children,
+    children
   } = defaultProps;
 
   return (
@@ -44,7 +44,7 @@ const RunningLine: FC<
       className={cn(
         className,
         styles.runningLine,
-        verticalAlign ? styles.vAlign : '',
+        verticalAlign ? styles.vAlign : ''
       )}
     >
       {children}

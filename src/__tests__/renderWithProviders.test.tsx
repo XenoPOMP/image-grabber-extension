@@ -22,10 +22,10 @@ describe.skipIf(skipTestCondition('FRONTEND'))(
       const component = renderWithProviders(<div>123</div>, {
         useRedux: true,
         useRouter: true,
-        useQuery: true,
+        useQuery: true
       });
 
       expect(component).toMatchSnapshot();
     });
-  },
+  }
 );

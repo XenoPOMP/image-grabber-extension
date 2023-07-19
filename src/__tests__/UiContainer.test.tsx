@@ -15,8 +15,8 @@ describe.skipIf(skipTestCondition('FRONTEND'))('UI container', () => {
           <UiContainer.Header>Container</UiContainer.Header>
           <UiContainer.Section>Container</UiContainer.Section>
           <UiContainer.Article>Container</UiContainer.Article>
-        </>,
-      ),
+        </>
+      )
     ).toMatchSnapshot();
 
     expect(
@@ -25,8 +25,8 @@ describe.skipIf(skipTestCondition('FRONTEND'))('UI container', () => {
           <UiGrid>Container</UiGrid>
           <UiGrid.Section>Container</UiGrid.Section>
           <UiGrid.Article>Container</UiGrid.Article>
-        </>,
-      ),
+        </>
+      )
     ).toMatchSnapshot();
   });
 });

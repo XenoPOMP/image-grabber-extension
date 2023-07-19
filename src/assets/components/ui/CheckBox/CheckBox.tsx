@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { FC, PropsWithChildren, useRef } from 'react';
+import { FC } from 'react';
 
 import { PropsWith } from '@type/PropsWith';
 
@@ -27,7 +27,7 @@ const CheckBox: FC<PropsWith<'children', CheckBoxProps>> = ({
   children,
   checked,
   disabled,
-  onClick,
+  onClick
 }) => {
   return (
     <label className={cn(styles.checkBoxLabel)}>

@@ -2,8 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import appSettingsSlice, {
   AppSettings,
-  changeLang,
-  initialAppSettings,
+  changeLang
 } from '@redux/reducers/appSettingsSlice';
 import { ReduxAction } from '@redux/types';
 
@@ -16,14 +15,14 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Redux => AppSettings', () => {
     expect(result).toStrictEqual({
       appVersion: '0.0.0',
       appName: 'React Vite Application',
-      language: 'en',
+      language: 'en'
     });
   });
 
   test('change language with "changeLang" action', () => {
     const action: ReduxAction<AppSettings['language']> = {
       type: changeLang.type,
-      payload: 'ru',
+      payload: 'ru'
     };
 
     const result = appSettingsSlice(undefined, action);

@@ -25,7 +25,7 @@ const Loader: FC<LoaderProps> = ({ type, className, mainColor }) => {
           transition={{
             duration: 2,
             ease: 'linear',
-            repeat: Infinity,
+            repeat: Infinity
           }}
           width='20'
           height='20'
@@ -51,48 +51,48 @@ const Loader: FC<LoaderProps> = ({ type, className, mainColor }) => {
         <div
           style={
             {
-              '--main-color': mainColor,
+              '--main-color': mainColor
             } as CSSProperties
           }
           className={cn(styles.loader, styles.threeDots, className)}
         >
           <motion.div
             animate={{
-              opacity: [0.5, 1, 0.5],
+              opacity: [0.5, 1, 0.5]
             }}
             transition={{
               duration: 1,
               ease: 'linear',
               repeatDelay: 2,
-              repeat: Infinity,
+              repeat: Infinity
             }}
             className={cn(styles.dot)}
           ></motion.div>
 
           <motion.div
             animate={{
-              opacity: [0.5, 1, 0.5],
+              opacity: [0.5, 1, 0.5]
             }}
             transition={{
               duration: 1,
               ease: 'linear',
               delay: 1,
               repeatDelay: 2,
-              repeat: Infinity,
+              repeat: Infinity
             }}
             className={cn(styles.dot)}
           ></motion.div>
 
           <motion.div
             animate={{
-              opacity: [0.5, 1, 0.5],
+              opacity: [0.5, 1, 0.5]
             }}
             transition={{
               duration: 1,
               delay: 2,
               repeatDelay: 2,
               ease: 'linear',
-              repeat: Infinity,
+              repeat: Infinity
             }}
             className={cn(styles.dot)}
           ></motion.div>
@@ -103,7 +103,7 @@ const Loader: FC<LoaderProps> = ({ type, className, mainColor }) => {
         <div
           style={
             {
-              '--main-color': mainColor,
+              '--main-color': mainColor
             } as CSSProperties
           }
           className={cn(styles.loader, styles.verticalLines, className)}
@@ -114,13 +114,13 @@ const Loader: FC<LoaderProps> = ({ type, className, mainColor }) => {
             return (
               <motion.div
                 animate={{
-                  scaleY: [startScale, 1, startScale],
+                  scaleY: [startScale, 1, startScale]
                 }}
                 transition={{
                   duration: 1,
                   delay: 0.1 * num,
                   ease: 'easeOut',
-                  repeat: Infinity,
+                  repeat: Infinity
                 }}
                 className={cn(styles.line)}
                 key={`wave-element-${num}`}

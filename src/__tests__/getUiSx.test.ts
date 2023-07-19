@@ -1,7 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import getUiSx from '@utils/getUiSx';
-import { GridSettings } from '@utils/getUiSx';
+import getUiSx, { GridSettings } from '@utils/getUiSx';
 import skipTestCondition from '@utils/skipTestCondition';
 
 /**

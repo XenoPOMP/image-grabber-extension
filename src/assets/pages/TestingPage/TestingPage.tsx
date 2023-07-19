@@ -6,7 +6,6 @@ import CheckBox from '@ui/CheckBox/CheckBox';
 
 import useAppSettings from '@hooks/useAppSettings';
 import useBoolean from '@hooks/useBoolean';
-import useCopyToClipboard from '@hooks/useCopyToClipboard';
 
 import { TestingPageProps } from './TestingPage.props';
 

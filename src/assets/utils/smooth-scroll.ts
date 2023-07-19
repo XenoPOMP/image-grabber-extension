@@ -19,7 +19,7 @@ export const smoothScroll = (
     delay?: number;
     ease?: EasingDefinition;
     offset?: number;
-  },
+  }
 ) => {
   if (/^.+#/i.test(id)) {
     throw new ArgumentError(`wrong format of id (expected #... or ...`);
@@ -29,6 +29,6 @@ export const smoothScroll = (
     duration: props?.duration ? props?.duration : 1000,
     delay: props?.delay ? props?.delay : 0,
     smooth: props?.ease ? props?.ease : 'easeOut',
-    offset: props?.offset ? props?.offset : -50,
+    offset: props?.offset ? props?.offset : -50
   });
 };

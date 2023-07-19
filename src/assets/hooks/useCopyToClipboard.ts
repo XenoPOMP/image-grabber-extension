@@ -29,7 +29,7 @@ const useCopyToClipboard = (): {
 
   return {
     isCopied,
-    copy,
+    copy
   };
 };
 

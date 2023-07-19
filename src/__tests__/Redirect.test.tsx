@@ -9,13 +9,13 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Redirect component', () => {
   test('Match snapshot', () => {
     expect(
       renderWithProviders(<Redirect to={'/'} triggered={true} />, {
-        useRouter: true,
+        useRouter: true
       })
     ).toMatchSnapshot();
 
     expect(
       renderWithProviders(<Redirect to={'/'} triggered={false} />, {
-        useRouter: true,
+        useRouter: true
       })
     ).toMatchSnapshot();
   });

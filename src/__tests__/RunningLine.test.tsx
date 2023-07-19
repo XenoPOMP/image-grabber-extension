@@ -8,11 +8,11 @@ import skipTestCondition from '@utils/skipTestCondition';
 describe.skipIf(skipTestCondition('FRONTEND'))('Running line component', () => {
   test('Match snapshot', () => {
     expect(
-      render(<RunningLine verticalAlign>Some line content</RunningLine>),
+      render(<RunningLine verticalAlign>Some line content</RunningLine>)
     ).toMatchSnapshot();
 
     expect(
-      render(<RunningLine>Some line content</RunningLine>),
+      render(<RunningLine>Some line content</RunningLine>)
     ).toMatchSnapshot();
   });
 });

@@ -10,7 +10,7 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Portal component', () => {
     render(
       <Portal enabled={false}>
         <div>Test me</div>
-      </Portal>,
+      </Portal>
     );
 
     expect(document.querySelectorAll('div').length).toBe(1);
@@ -20,7 +20,7 @@ describe.skipIf(skipTestCondition('FRONTEND'))('Portal component', () => {
     render(
       <Portal enabled={true}>
         <div>Test me</div>
-      </Portal>,
+      </Portal>
     );
 
     expect(screen.getByText(/Test me/gi)).toBeDefined();

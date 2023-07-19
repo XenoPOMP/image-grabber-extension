@@ -27,5 +27,5 @@ describe.skipIf(skipTestCondition('FRONTEND') || TESTING_MODE === 'FULLSTACK')(
 
       expect(isSkip).toBe(true);
     });
-  },
+  }
 );

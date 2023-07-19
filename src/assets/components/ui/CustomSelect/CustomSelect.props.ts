@@ -39,7 +39,7 @@ export type TypedSelectOption<Value extends SelectOption['value']> = {
 export interface CustomSelectProps {
   options?: SelectOption[];
   onChange?: (
-    option: SingleValue<SelectOption> | MultiValue<SelectOption>,
+    option: SingleValue<SelectOption> | MultiValue<SelectOption>
   ) => any;
   defaultValue?: SelectOption;
   placeholder?: string;

@@ -22,8 +22,8 @@ const UiGrid: FC<IUiGridNestedProps> & {
           cols,
           rows,
           gap,
-          maxWidth,
-        }),
+          maxWidth
+        })
       }}
       className={cn(styles.grid, className)}
       id={id}
@@ -40,8 +40,8 @@ UiGrid.Section = ({ children, id, className, cols, rows, gap, maxWidth }) => (
         cols,
         rows,
         gap,
-        maxWidth,
-      }),
+        maxWidth
+      })
     }}
     id={id}
     className={cn(styles.grid, className)}
@@ -57,8 +57,8 @@ UiGrid.Article = ({ children, id, className, cols, rows, gap, maxWidth }) => (
         cols,
         rows,
         gap,
-        maxWidth,
-      }),
+        maxWidth
+      })
     }}
     id={id}
     className={cn(styles.grid, className)}

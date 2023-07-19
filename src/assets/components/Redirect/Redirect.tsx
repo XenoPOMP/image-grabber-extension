@@ -19,7 +19,7 @@ const Redirect: FC<RedirectProps> = ({ triggered, to, options }) => {
   const defaultOptions: typeof options = {
     replace: true,
     preventScrollReset: false,
-    ...options,
+    ...options
   };
 
   /** Navigate to link if trigger is triggered. */

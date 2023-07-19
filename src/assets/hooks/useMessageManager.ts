@@ -2,7 +2,6 @@ import { v4 as uuid } from 'uuid';
 
 import { useAppDispatch } from '@redux/hooks';
 import {
-  Message,
   MessagesState,
   createNewMessage,
   deleteMessage

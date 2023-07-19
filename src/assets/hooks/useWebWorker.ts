@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import useBoolean from '@hooks/useBoolean';
 
@@ -98,6 +98,6 @@ export const useWebWorker = <Result>(
     result,
     isLoading,
     run,
-    terminate,
+    terminate
   };
 };

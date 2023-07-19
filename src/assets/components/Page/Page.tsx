@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import Helmet from 'react-helmet';
 
 import Layout from '@components/Layout/Layout';
@@ -21,7 +21,7 @@ import { PageProps } from './Page.props';
 const Page: FC<PropsWith<'children', PageProps>> = ({
   meta,
   children,
-  noIndex,
+  noIndex
 }) => {
   const { appName } = useAppSettings();
 
@@ -29,7 +29,7 @@ const Page: FC<PropsWith<'children', PageProps>> = ({
     <Layout>
       <Helmet
         htmlAttributes={{
-          lang: 'en',
+          lang: 'en'
         }}
       >
         <title>{meta.title}</title>

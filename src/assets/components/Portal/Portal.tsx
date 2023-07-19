@@ -1,9 +1,7 @@
-import cn from 'classnames';
-import { FC, PropsWithChildren } from 'react';
+import { FC } from 'react';
 
 import { PropsWith } from '@type/PropsWith';
 
-import styles from './Portal.module.scss';
 import type { PortalProps } from './Portal.props';
 
 /**
@@ -15,7 +13,7 @@ import type { PortalProps } from './Portal.props';
  */
 const Portal: FC<PropsWith<'children', PortalProps>> = ({
   children,
-  enabled,
+  enabled
 }) => {
   return enabled ? <>{children}</> : <></>;
 };
