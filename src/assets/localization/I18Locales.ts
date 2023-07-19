@@ -12,7 +12,9 @@ export interface I18Locales
     | 'cancelGrabbing'
     | 'chromeApiNotResponding'
     | 'noActiveTab'
-    | 'failedToDownloadFile',
+    | 'failedToDownloadFile'
+    | 'imageCopied'
+    | 'failedImageCopy',
     LocalizationMessage
   > {}
 

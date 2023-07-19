@@ -29,5 +29,15 @@ export const en: I18Locales = {
   failedToDownloadFile: {
     message: 'File download failed',
     description: 'File downloading error message.'
+  },
+
+  imageCopied: {
+    message: 'Copied',
+    description: 'Image copy success message.'
+  },
+
+  failedImageCopy: {
+    message: 'Failed to copy image',
+    description: 'Image copy fail message.'
   }
 };

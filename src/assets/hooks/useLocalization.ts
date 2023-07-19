@@ -7,6 +7,8 @@ export const useLocalization = (): Localization => {
     cancelGrabbing: getChromeLocale('cancelGrabbing'),
     chromeApiNotResponding: getChromeLocale('chromeApiNotResponding'),
     noActiveTab: getChromeLocale('noActiveTab'),
-    failedToDownloadFile: getChromeLocale('failedToDownloadFile')
+    failedToDownloadFile: getChromeLocale('failedToDownloadFile'),
+    imageCopied: getChromeLocale('imageCopied'),
+    failedImageCopy: getChromeLocale('failedImageCopy')
   };
 };

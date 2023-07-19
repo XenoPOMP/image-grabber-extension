@@ -22,6 +22,14 @@
 
     .button {
       @extend %flexCenter;
+
+      &.blocked {
+        display: none;
+
+        svg {
+          opacity: .25;
+        }
+      }
     }
 
     header,
@@ -37,8 +45,10 @@
       justify-content: space-between;
     }
 
-    header {
-
+    footer {
+      section {
+        display: inherit;
+      }
     }
 
     .body {
