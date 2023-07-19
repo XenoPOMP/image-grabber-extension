@@ -72,7 +72,7 @@ const MainPage = () => {
           document.querySelectorAll('img')
         ).map(img => img.src);
 
-        return [...images];
+        return [...new Set(images)];
       };
 
       /**
