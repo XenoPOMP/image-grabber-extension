@@ -1,6 +1,7 @@
+import { Slider } from '@mui/material';
 import chunk from 'chunk';
 import cn from 'classnames';
-import { useState } from 'react';
+import { ComponentProps, useState } from 'react';
 
 import ImageView from '@components/ImageView/ImageView';
 import Page from '@components/Page/Page';
@@ -16,6 +17,7 @@ import useBoolean from '@hooks/useBoolean';
 import { useLocalization } from '@hooks/useLocalization';
 import { useMessageManager } from '@hooks/useMessageManager';
 
+import { Defined } from '@type/Defined';
 import { ImageSearchResult } from '@type/ImageSearchResult';
 
 import { isUndefined } from '@utils/type-checks';
@@ -32,6 +34,9 @@ const MainPage = () => {
   /** Replace WebWorker with states and async. */
   const [result, setResult] = useState<ImageSearchResult>(undefined);
   const [isLoading, toggleIsLoading, setIsLoading] = useBoolean(false);
+
+  /** View settings. */
+  const [gridSize, setGridSize] = useState<number>(3);
 
   /** This function runs image grabbing process. */
   const run = async () => {
@@ -172,7 +177,10 @@ const MainPage = () => {
           </Overlay>
         </header>
 
-        <Masonry className={cn(styles.masonry, 'gap-[.1rem]')}>
+        <Masonry
+          columns={gridSize}
+          className={cn(styles.masonry, 'gap-[.1rem]')}
+        >
           <Column>
             {getImageColumns().first?.map((src, index) => {
               const columnIndex = 1;
@@ -242,6 +250,27 @@ const MainPage = () => {
             })}
           </Column>
         </Masonry>
+
+        {!isUndefined(result) && result.length > 0 && (
+          <section className={cn(styles.controlsBlock)}>
+            <Slider
+              defaultValue={3}
+              marks
+              step={1}
+              min={1}
+              max={5}
+              value={gridSize}
+              valueLabelDisplay={'off'}
+              onChange={ev => {
+                // @ts-ignore
+                setGridSize(ev.target.value);
+              }}
+              getAriaValueText={(value, index) => {
+                return `${index}`;
+              }}
+            />
+          </section>
+        )}
       </section>
     </Page>
   );

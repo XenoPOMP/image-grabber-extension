@@ -3,7 +3,13 @@
 .mainPage {
   max-height: 100%;
 
-  .label {
+  header.label,
+  .masonry,
+  section.controlsBlock {
+    // border: 2px solid red;
+  }
+
+  header.label {
     @extend %notSelectable;
 
     width: 100%;
@@ -99,5 +105,16 @@
         }
       }
     }
+  }
+
+  section.controlsBlock {
+    // background: rgba(255 0 0 / .25);
+    padding: 1rem;
+    border-top: 1px solid #3B82F6;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: var(--main-page-controls);
+    background: white;
   }
 }
