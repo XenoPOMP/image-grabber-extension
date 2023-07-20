@@ -59,5 +59,11 @@ export const en: I18Locales = {
   infoSource: {
     message: 'Source',
     description: 'Source label in info.'
+  },
+
+  infoFetchError: {
+    message: 'There is no information about this file',
+    description:
+      'This error comes out when the user wanted to view information about the file, but it was not found.'
   }
 };

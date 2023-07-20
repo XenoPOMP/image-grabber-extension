@@ -71,7 +71,6 @@
 
           b.label {
             @extend %medium;
-
             text-align: left;
           }
 
@@ -80,6 +79,15 @@
             text-align: left;
             max-width: 100%;
           }
+        }
+
+        .errorMessage {
+          @extend %flexCenter;
+          @extend %medium;
+          @extend %notSelectable;
+
+          flex-direction: column;
+          gap: 1em;
         }
       }
 

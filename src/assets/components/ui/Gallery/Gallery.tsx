@@ -1,9 +1,11 @@
 import cn from 'classnames';
 import { copyImageToClipboard } from 'copy-image-clipboard';
 import { FC, useCallback, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import TextOverflow from 'react-text-overflow';
 import { v4 as uuid } from 'uuid';
 
+import Loader from '@ui/Loader/Loader';
 import Overlay from '@ui/Overlay/Overlay';
 import ProgressiveImage from '@ui/ProgressiveImage/ProgressiveImage';
 
@@ -16,6 +18,8 @@ import { ImageSearchResult } from '@type/ImageSearchResult';
 import { PropsWith } from '@type/PropsWith';
 
 import { isUndefined } from '@utils/type-checks';
+
+import { FilesizeService } from '../../../api/services/Filesize.service';
 
 import styles from './Gallery.module.scss';
 
@@ -61,6 +65,23 @@ export const useGallery = (): {
       extension
     };
   }, [displayingImage]);
+
+  const isFilenameCorrect = (): boolean => {
+    const { name, extension } = getFileName();
+
+    return !isUndefined(name) && !isUndefined(extension);
+  };
+
+  // const { data, isLoading, isError } = useQuery(
+  //   'get-file-size',
+  //   () =>
+  //     FilesizeService.getFileSize(
+  //       `${getFileName().name}.${getFileName().extension}`
+  //     ),
+  //   {
+  //     enabled: isInfoShown
+  //   }
+  // );
 
   const Gallery: ReturnType<typeof useGallery>['Gallery'] = ({}) => {
     const Button: FC<
@@ -144,24 +165,65 @@ export const useGallery = (): {
           <article className={cn(styles.body)}>
             {isInfoShown ? (
               <div className={cn(styles.infoBlock)}>
-                <div className={cn(styles.content)}>
-                  <b className={cn(styles.label)}>
-                    <TextOverflow text={loc.infoFilename} />
-                  </b>
-                  <div className={cn(styles.text)}>{getFileName().name}</div>
+                {isFilenameCorrect() ? (
+                  <div className={cn(styles.content)}>
+                    <b className={cn(styles.label)}>
+                      <TextOverflow text={loc.infoFilename} />
+                    </b>
+                    <div className={cn(styles.text)}>
+                      <TextOverflow
+                        text={
+                          !isUndefined(getFileName().name)
+                            ? (getFileName().name as string)
+                            : '...'
+                        }
+                      />
+                    </div>
 
-                  <b className={cn(styles.label)}>
-                    <TextOverflow text={loc.infoExtension} />
-                  </b>
-                  <div className={cn(styles.text)}>
-                    {getFileName().extension}
+                    <b className={cn(styles.label)}>
+                      <TextOverflow text={loc.infoExtension} />
+                    </b>
+                    <div className={cn(styles.text)}>
+                      <TextOverflow
+                        text={
+                          !isUndefined(getFileName().extension)
+                            ? (getFileName().extension as string)
+                            : '...'
+                        }
+                      />
+                    </div>
+
+                    {/*<b className={cn(styles.label)}>*/}
+                    {/*  <TextOverflow text={loc.infoFileSize} />*/}
+                    {/*</b>*/}
+                    {/*<div className={cn(styles.text)}>*/}
+                    {/*  {isLoading ? (*/}
+                    {/*    <Loader type={'circle'} mainColor={'white'} />*/}
+                    {/*  ) : isError ? (*/}
+                    {/*    <div>Error</div>*/}
+                    {/*  ) : (*/}
+                    {/*    <div>{data}</div>*/}
+                    {/*  )}*/}
+                    {/*</div>*/}
                   </div>
+                ) : (
+                  <div className={cn(styles.errorMessage)}>
+                    <svg
+                      width='60'
+                      height='65'
+                      viewBox='0 0 60 65'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M53.9675 12.8597L34.9978 1.90586C31.9001 0.117479 28.0679 0.117479 24.9382 1.90586L6.00055 12.8597C2.90282 14.6481 0.986694 17.9694 0.986694 21.5781V43.4219C0.986694 46.9987 2.90282 50.3199 6.00055 52.1403L24.9701 63.0941C28.0679 64.8825 31.9001 64.8825 35.0298 63.0941L53.9994 52.1403C57.0971 50.3519 59.0133 47.0306 59.0133 43.4219V21.5781C58.9813 17.9694 57.0652 14.68 53.9675 12.8597ZM27.5888 18.9274C27.5888 17.6181 28.6746 16.5323 29.984 16.5323C31.2933 16.5323 32.3791 17.6181 32.3791 18.9274V35.6935C32.3791 37.0029 31.2933 38.0887 29.984 38.0887C28.6746 38.0887 27.5888 37.0029 27.5888 35.6935V18.9274ZM32.922 47.2861C32.7624 47.6693 32.5388 48.0206 32.2514 48.3399C31.6446 48.9467 30.8462 49.2661 29.984 49.2661C29.5688 49.2661 29.1537 49.1703 28.7704 49.0106C28.3553 48.8509 28.0359 48.6274 27.7166 48.3399C27.4291 48.0206 27.2056 47.6693 27.014 47.2861C26.8543 46.9029 26.7904 46.4877 26.7904 46.0725C26.7904 45.2422 27.1098 44.4119 27.7166 43.8051C28.0359 43.5177 28.3553 43.2942 28.7704 43.1345C29.952 42.6235 31.3572 42.9109 32.2514 43.8051C32.5388 44.1245 32.7624 44.4438 32.922 44.859C33.0817 45.2422 33.1775 45.6574 33.1775 46.0725C33.1775 46.4877 33.0817 46.9029 32.922 47.2861Z'
+                        fill='white'
+                      />
+                    </svg>
 
-                  <b className={cn(styles.label)}>
-                    <TextOverflow text={loc.infoFileSize} />
-                  </b>
-                  <div className={cn(styles.text)}>Text</div>
-                </div>
+                    <p>{loc.infoFetchError}</p>
+                  </div>
+                )}
               </div>
             ) : (
               <ProgressiveImage
