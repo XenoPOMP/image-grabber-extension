@@ -16,7 +16,8 @@
     "test:backend": "cross-env VITE_TESTING_MODE=BACKEND yarn test",
     "test:fullstack": "cross-env VITE_TESTING_MODE=FULLSTACK yarn test",
     "coverage": "cross-env VITE_TESTING_MODE=FULLSTACK yarn clear && vitest run --coverage",
-    "afterbuild": "rvt link locales && xcopy /s /v /y \".rvt\\manifests\\chrome\\*\" \"dist\"",
+    "link": "concurrently \"rvt link locales\" \"rvt link version\"",
+    "afterbuild": "yarn link && xcopy /s /v /y \".rvt\\manifests\\chrome\\*\" \"dist\"",
     "watch:metadata": "nodemon --exec \"yarn afterbuild\" --watch src --ext \"ts\""
   },
   "dependencies": {
@@ -88,7 +89,7 @@
     "postcss": "^8.4.25",
     "prettier": "2.8.1",
     "prettier-init": "^1.3.0",
-    "rvt-cli": "^1.2.5",
+    "rvt-cli": "1.2.7",
     "shelljs": "^0.8.5",
     "shx": "^0.3.4",
     "tailwindcss": "^3.3.2",
