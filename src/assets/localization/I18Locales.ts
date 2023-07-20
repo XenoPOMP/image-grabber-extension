@@ -19,7 +19,8 @@ export interface I18Locales
     | 'infoExtension'
     | 'infoFileSize'
     | 'infoSource'
-    | 'infoFetchError',
+    | 'infoFetchError'
+    | 'noResults',
     LocalizationMessage
   > {}
 

@@ -41,6 +41,10 @@
     width: 100%;
     flex-grow: 1;
 
+    &.noGrow {
+      flex-grow: unset;
+    }
+
     .block {
       position: relative;
       overflow: hidden;
@@ -109,6 +113,16 @@
         }
       }
     }
+  }
+
+  .noResults {
+    @extend %flexCenter;
+    @extend %medium;
+
+    flex-grow: 1;
+    font-size: 1rem; // 1em = 20px
+    flex-direction: column;
+    gap: .75em;
   }
 
   footer.controlsBlock {

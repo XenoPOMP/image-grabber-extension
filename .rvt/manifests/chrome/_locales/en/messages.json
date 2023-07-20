@@ -50,5 +50,9 @@
   "infoFetchError": {
     "message": "There is no information about this file",
     "description": "This error comes out when the user wanted to view information about the file, but it was not found."
+  },
+  "noResults": {
+    "message": "We dont seem to have found anything",
+    "description": "This inscription appears when no photos were found on the page."
   }
 }

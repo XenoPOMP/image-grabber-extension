@@ -14,6 +14,7 @@ export const useLocalization = (): Localization => {
     infoExtension: getChromeLocale('infoExtension'),
     infoFileSize: getChromeLocale('infoFileSize'),
     infoSource: getChromeLocale('infoSource'),
-    infoFetchError: getChromeLocale('infoFetchError')
+    infoFetchError: getChromeLocale('infoFetchError'),
+    noResults: getChromeLocale('noResults')
   };
 };

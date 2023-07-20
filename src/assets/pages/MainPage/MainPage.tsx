@@ -9,6 +9,7 @@ import Button from '@ui/Button/Button';
 import useGallery from '@ui/Gallery/Gallery';
 import Loader from '@ui/Loader/Loader';
 import Overlay from '@ui/Overlay/Overlay';
+import ProgressiveImage from '@ui/ProgressiveImage/ProgressiveImage';
 import Block from '@ui/masonry/Block/Block';
 import Column from '@ui/masonry/Column/Column';
 import Masonry from '@ui/masonry/Masonry/Masonry';
@@ -22,6 +23,8 @@ import { ImageSearchResult } from '@type/ImageSearchResult';
 
 import { getImageColumns } from '@utils/getImageColumns';
 import { isUndefined } from '@utils/type-checks';
+
+import noResultIcon from '@media/icons/no-results 1.png';
 
 import styles from './MainPage.module.scss';
 
@@ -153,7 +156,11 @@ const MainPage = () => {
 
         <Masonry
           columns={gridSize.get()}
-          className={cn(styles.masonry, 'gap-[.1rem]')}
+          className={cn(
+            styles.masonry,
+            'gap-[.1rem]',
+            !isUndefined(result) && result.length === 0 && styles.noGrow
+          )}
         >
           {getImageColumns(result).map((col, columnIndex) => {
             return (
@@ -186,6 +193,20 @@ const MainPage = () => {
             );
           })}
         </Masonry>
+
+        {!isUndefined(result) && result.length === 0 && (
+          <div className={cn(styles.noResults)}>
+            <ProgressiveImage
+              loaderColorScheme={{
+                backgroundColor: 'transparent',
+                loaderColor: 'black'
+              }}
+              src={noResultIcon}
+              alt={'No result icon'}
+            />
+            {loc.noResults}
+          </div>
+        )}
 
         <Gallery />
 
