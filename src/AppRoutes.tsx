@@ -2,6 +2,7 @@ import { AnimatePresence } from 'framer-motion';
 import React, { FC } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
+import HelpPage from '@pages/HelpPage/HelpPage';
 import MainPage from '@pages/MainPage/MainPage';
 import NotFound from '@pages/NotFound/NotFound';
 
@@ -30,6 +31,8 @@ const AppRoutes: FC<{
         <Route path={'*'} element={<NotFound />} />
 
         <Route path={'/index.html'} element={<MainPage />} index />
+
+        <Route path={'/help'} element={<HelpPage />} />
       </Routes>
     );
   };

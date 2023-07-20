@@ -35,6 +35,28 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
+    display: flex;
+    gap: .8rem;
+
+    section {
+      &.main {
+        flex-grow: 1;
+      }
+
+      &.info {
+        @extend %flexCenter;
+
+        flex-shrink: 0;
+        align-items: start;
+        display: none;
+
+        svg {
+          height: 1.5em;
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   .masonry {
