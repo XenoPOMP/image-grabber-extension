@@ -15,5 +15,7 @@ export const isAdvertisement = (str?: string): boolean => {
     .map(pattern => `(${pattern})`)
     .join('|');
 
-  return !isUndefined(str) && new RegExp(pattern, 'gi').test(str);
+  return false;
+
+  // return !isUndefined(str) && new RegExp(pattern, 'gi').test(str);
 };
