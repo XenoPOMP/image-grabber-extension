@@ -9,7 +9,8 @@ export const isAdvertisement = (str?: string): boolean => {
   const pattern: string = [
     'https://adservice.google.com',
     'https://ae04.alicdn.com',
-    'https://insight.adsrvr.org'
+    'https://insight.adsrvr.org',
+    'buysellads.net'
   ]
     .map(pattern => `(${pattern})`)
     .join('|');
