@@ -3,12 +3,17 @@
 
   position: relative;
 
-  &:has(> .adWarning) {
+  &:has(> .adWarning):has(img) {
     // background: red;
     border: 1px solid $adWarnBorder;
+
+    .adWarning {
+      display: inline-block;
+    }
   }
 
   .adWarning {
+    display: none;
     background: $adWarnBorder;
     color: white;
     position: absolute;
@@ -16,7 +21,6 @@
     left: 0;
     max-height: 100%;
     z-index: var(--main-page-ad-warn);
-    display: inline-block;
     font-size: .5rem;
     padding: .25em .5em;
     font-weight: bold;
