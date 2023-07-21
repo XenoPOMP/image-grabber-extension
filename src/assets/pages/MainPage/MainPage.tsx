@@ -21,6 +21,8 @@ import useBoolean from '@hooks/useBoolean';
 import { useLocalization } from '@hooks/useLocalization';
 import { useMessageManager } from '@hooks/useMessageManager';
 
+import { ArrayType } from '@type/ArrayType';
+import { Defined } from '@type/Defined';
 import { ImageSearchResult } from '@type/ImageSearchResult';
 
 import { getImageColumns } from '@utils/getImageColumns';
@@ -81,7 +83,19 @@ const MainPage = () => {
           document.querySelectorAll('img')
         ).map(img => img.src);
 
-        return [...new Set(images)];
+        const spanImages: typeof result = Array.from(
+          document.querySelectorAll('span')
+        )
+          .map(span => span.style.backgroundImage)
+          .map(src => src.replace(/(^url\(")|("\))/g, ''));
+
+        const makeUniqueSources = (
+          ...args: Array<ImageSearchResult>
+        ): ImageSearchResult => {
+          return [...new Set(args.flat())];
+        };
+
+        return makeUniqueSources(images);
       };
 
       /**
