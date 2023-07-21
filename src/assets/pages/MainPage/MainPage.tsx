@@ -95,7 +95,7 @@ const MainPage = () => {
           return [...new Set(args.flat())];
         };
 
-        return makeUniqueSources(images);
+        return makeUniqueSources(images, spanImages);
       };
 
       /**

@@ -18,10 +18,10 @@
   },
   "permissions": [
     "activeTab",
-    "tabGroups",
-    "tabs",
     "downloads",
-    "scripting"
+    "scripting",
+    "tabGroups",
+    "tabs"
   ],
   "optional_permissions": [],
   "host_permissions": [

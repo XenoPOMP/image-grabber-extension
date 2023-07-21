@@ -1,15 +1,17 @@
 import cn from 'classnames';
 import { FC } from 'react';
 
-import styles from '@pages/MainPage/MainPage.module.scss';
+import parentStyles from '@pages/MainPage/MainPage.module.scss';
 
 import ProgressiveImage from '@ui/ProgressiveImage/ProgressiveImage';
 
 import { useLocalization } from '@hooks/useLocalization';
 import { useMessageManager } from '@hooks/useMessageManager';
 
+import { isAdvertisement } from '@utils/isAdvertisement';
 import { isUndefined } from '@utils/type-checks';
 
+import styles from './ImageView.module.scss';
 import type { ImageViewProps } from './ImageView.props';
 
 const ImageView: FC<ImageViewProps> = ({
@@ -24,7 +26,9 @@ const ImageView: FC<ImageViewProps> = ({
   const loc = useLocalization();
 
   return (
-    <div>
+    <div className={cn(styles.imageView)}>
+      {isAdvertisement(src) && <div className={cn(styles.adWarning)}>AD</div>}
+
       <ProgressiveImage
         src={src}
         alt={alt}
@@ -38,15 +42,15 @@ const ImageView: FC<ImageViewProps> = ({
         }}
       />
 
-      <div className={cn(styles.overlayControls)}>
-        <div className={cn(styles.group)}></div>
+      <div className={cn(parentStyles.overlayControls)}>
+        <div className={cn(parentStyles.group)}></div>
 
-        <div className={cn(styles.group)}>
+        <div className={cn(parentStyles.group)}>
           <svg
             viewBox='0 0 24 24'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            className={cn(styles.download)}
+            className={cn(parentStyles.download)}
             onClick={() => {
               if (isUndefined(chrome.downloads)) {
                 createMessage({

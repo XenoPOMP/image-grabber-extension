@@ -15,6 +15,7 @@ export const useLocalization = (): Localization => {
     infoFileSize: getChromeLocale('infoFileSize'),
     infoSource: getChromeLocale('infoSource'),
     infoFetchError: getChromeLocale('infoFetchError'),
-    noResults: getChromeLocale('noResults')
+    noResults: getChromeLocale('noResults'),
+    galleryAdWarnHeading: getChromeLocale('galleryAdWarnHeading')
   };
 };

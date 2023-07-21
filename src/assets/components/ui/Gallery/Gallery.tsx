@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { copyImageToClipboard } from 'copy-image-clipboard';
 import { FC, useCallback, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import TextOverflow from 'react-text-overflow';
 import { v4 as uuid } from 'uuid';
 
@@ -10,6 +11,7 @@ import Overlay from '@ui/Overlay/Overlay';
 import ProgressiveImage from '@ui/ProgressiveImage/ProgressiveImage';
 
 import useBoolean from '@hooks/useBoolean';
+import { useChromeApi } from '@hooks/useChromeApi';
 import { useLocalization } from '@hooks/useLocalization';
 import { useMessageManager } from '@hooks/useMessageManager';
 
@@ -17,6 +19,7 @@ import { ArrayType } from '@type/ArrayType';
 import { ImageSearchResult } from '@type/ImageSearchResult';
 import { PropsWith } from '@type/PropsWith';
 
+import { isAdvertisement } from '@utils/isAdvertisement';
 import { isUndefined } from '@utils/type-checks';
 
 import { FilesizeService } from '../../../api/services/Filesize.service';
@@ -41,6 +44,7 @@ export const useGallery = (): {
 
   const { createMessage } = useMessageManager();
   const loc = useLocalization();
+  const api = useChromeApi();
 
   const getFileName = useCallback<
     () => {
@@ -130,7 +134,11 @@ export const useGallery = (): {
       >
         <section className={cn(styles.grid)}>
           <header>
-            <div></div>
+            <h2>
+              {isAdvertisement(displayingImage) && (
+                <span>{loc.galleryAdWarnHeading}</span>
+              )}
+            </h2>
 
             <Button
               fullHeight
@@ -308,6 +316,46 @@ export const useGallery = (): {
                     </g>
                   </svg>
                 )}
+              </Button>
+
+              <Button
+                fullHeight
+                isSquare
+                onClick={() => {
+                  if (!isUndefined(displayingImage)) {
+                    api?.tabs.create({
+                      url: displayingImage
+                    });
+                  }
+                }}
+              >
+                <svg
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <mask
+                    id='mask0_41_27'
+                    style={{
+                      mask: 'alpha'
+                    }}
+                    maskUnits='userSpaceOnUse'
+                    x='0'
+                    y='0'
+                    width='24'
+                    height='24'
+                  >
+                    <rect width='24' height='24' fill='#D9D9D9' />
+                  </mask>
+                  <g mask='url(#mask0_41_27)'>
+                    <path
+                      d='M8.7 16.7L7.3 15.3L11.6 11H8V9H15V16H13V12.4L8.7 16.7ZM19 12V5H12V3H21V12H19ZM5 21C4.45 21 3.97917 20.8042 3.5875 20.4125C3.19583 20.0208 3 19.55 3 19V3H5V19H21V21H5Z'
+                      fill='white'
+                    />
+                  </g>
+                </svg>
               </Button>
             </section>
 

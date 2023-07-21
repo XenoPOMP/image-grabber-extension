@@ -1,0 +1,24 @@
+.imageView {
+  $adWarnBorder: rgba(0 0 0 / .75);
+
+  position: relative;
+
+  &:has(> .adWarning) {
+    // background: red;
+    border: 1px solid $adWarnBorder;
+  }
+
+  .adWarning {
+    background: $adWarnBorder;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-height: 100%;
+    z-index: var(--main-page-ad-warn);
+    display: inline-block;
+    font-size: .5rem;
+    padding: .25em .5em;
+    font-weight: bold;
+  }
+}

@@ -71,5 +71,10 @@ export const en: I18Locales = {
     message: 'We dont seem to have found anything',
     description:
       'This inscription appears when no photos were found on the page.'
+  },
+
+  galleryAdWarnHeading: {
+    message: 'Advertisement',
+    description: 'A warning that this picture is an advertisement.'
   }
 };

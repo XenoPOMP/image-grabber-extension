@@ -20,7 +20,8 @@ export interface I18Locales
     | 'infoFileSize'
     | 'infoSource'
     | 'infoFetchError'
-    | 'noResults',
+    | 'noResults'
+    | 'galleryAdWarnHeading',
     LocalizationMessage
   > {}
 

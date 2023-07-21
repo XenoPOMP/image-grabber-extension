@@ -45,6 +45,17 @@
       justify-content: space-between;
     }
 
+    header {
+      align-items: center;
+
+      h2 {
+        @extend %medium;
+
+        font-size: .75rem;
+        color: white;
+      }
+    }
+
     footer {
       section {
         display: inherit;
