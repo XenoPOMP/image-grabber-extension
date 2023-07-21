@@ -52,7 +52,7 @@ export const useGallery = (): {
       extension?: string;
     }
   >(() => {
-    const fullFileName = /.*\/\w+\.\w+$/gi.test(
+    const fullFileName = /.+\.\w+$/gi.test(
       displayingImage ? displayingImage : ''
     )
       ? displayingImage
