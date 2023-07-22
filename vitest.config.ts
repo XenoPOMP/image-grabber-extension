@@ -6,12 +6,13 @@ import viteConfig from './vite.config';
 export default mergeConfig(
   // @ts-ignore
   viteConfig,
+  // @ts-ignore
   defineConfig({
     test: {
       exclude: [...configDefaults.exclude, 'packages/template/*'],
       coverage: {
         reporter: ['text', 'json-summary', 'json'],
-        provider: 'istanbul'
+        provider: 'v8'
       }
     }
   })
