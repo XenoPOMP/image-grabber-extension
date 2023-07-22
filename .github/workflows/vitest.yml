@@ -20,9 +20,7 @@ jobs:
         with:
           node-version: '16.x'
       - name: 'Install Deps'
-        run:
-          - npm i yarn -g
-          - yarn
+        run: npm i yarn -g && yarn
       - name: 'Test'
         run: yarn coverage
       - name: 'Report Coverage'
