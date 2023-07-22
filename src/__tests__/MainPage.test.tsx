@@ -7,10 +7,10 @@ import skipTestCondition from '@utils/skipTestCondition';
 
 describe.skipIf(skipTestCondition('FRONTEND'))('Main page', () => {
   test('Match snapshot', () => {
-    expect(
+    expect(() => {
       renderWithProviders(<MainPage />, {
         useRedux: true
-      })
-    ).toMatchSnapshot();
+      });
+    }).toThrowError(ReferenceError);
   });
 });

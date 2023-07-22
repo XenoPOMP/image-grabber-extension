@@ -1,14 +1,7 @@
-<h1 align='center'>React Vite template </h1>
+# Grab the Images
 
-<p align='center'>
-<a href="https://github.com/XenoPOMP/react-vite-template/releases/"><img src="https://img.shields.io/github/release/XenoPOMP/react-vite-template?include_prereleases=&sort=semver&color=blueviolet" alt="GitHub release"></a>
-<a href="#license"><img src="https://img.shields.io/badge/License-MIT-informational" alt="License"></a>
-<a href="https://github.com/XenoPOMP/react-vite-template/issues"><img src="https://img.shields.io/github/issues/XenoPOMP/react-vite-template" alt="issues - react-vite-template"></a>
-</p>
+Chrome extension based on `react-vite-template`.
 
-<p align='center'>
-<a href="https://github.com/XenoPOMP/react-vite-template/generate"><img src="https://img.shields.io/badge/Generate-Use_this_template-2ea44f?style=for-the-badge" alt="Use this template"></a>
-</p>
 <hr>
 
 <p align="center">
