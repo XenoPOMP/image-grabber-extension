@@ -184,6 +184,7 @@ const MainPage = () => {
                 }}
                 className={'mt-[.5rem]'}
                 style={{}}
+                id={'loading-initiator'}
               >
                 {loc.grabButton}
               </Button>

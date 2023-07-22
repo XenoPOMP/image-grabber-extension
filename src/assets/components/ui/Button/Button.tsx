@@ -7,8 +7,8 @@ import styles from './Button.module.scss';
 import type { ButtonProps } from './Button.props';
 
 const Button: FC<
-  PropsWith<'children' | 'className' | 'style', ButtonProps>
-> = ({ children, className, style, onClick, variant }) => {
+  PropsWith<'children' | 'className' | 'style' | 'id', ButtonProps>
+> = ({ children, className, style, onClick, id, variant }) => {
   const defaultVariant: ButtonProps['variant'] = variant ? variant : 'normal';
 
   const getInlineClasses = (): string => {
@@ -37,6 +37,7 @@ const Button: FC<
         className,
         getInlineClasses()
       )}
+      id={id}
       onClick={onClick}
       style={{ ...style }}
     >
