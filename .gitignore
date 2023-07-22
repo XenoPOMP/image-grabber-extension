@@ -23,8 +23,6 @@ dist-ssr
 # Vitest
 coverage/*
 !coverage/coverage*.json
-**/__snapshots__/**
-*.snap
 **/*timestamp*
 
 # Editor directories and files
