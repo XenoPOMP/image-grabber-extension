@@ -20,9 +20,11 @@ jobs:
         with:
           node-version: '16.x'
       - name: 'Install Deps'
-        run: npm install
+        run:
+          - npm i yarn -g
+          - yarn
       - name: 'Test'
-        run: npx vitest --coverage
+        run: yarn coverage
       - name: 'Report Coverage'
         if: always() # Also generate the report if tests are failing
         uses: davelosert/vitest-coverage-report-action@v2
