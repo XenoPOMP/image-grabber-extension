@@ -18,7 +18,8 @@
     "coverage": "cross-env VITE_TESTING_MODE=FULLSTACK yarn clear && vitest run --coverage",
     "link:project": "concurrently \"rvt link locales\" \"rvt link version\"",
     "afterbuild": "yarn link:project && xcopy /s /v /y \".rvt\\manifests\\chrome\\*\" \"dist\"",
-    "watch:metadata": "nodemon --exec \"yarn afterbuild\" --watch src --ext \"ts\""
+    "watch:metadata": "nodemon --exec \"yarn afterbuild\" --watch src --ext \"ts\"",
+    "test-ci": "vitest run --coverage.enabled --coverage.reporter='text-summary'",
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
