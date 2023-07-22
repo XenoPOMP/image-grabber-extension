@@ -11,7 +11,7 @@ export default mergeConfig(
     test: {
       exclude: [...configDefaults.exclude, 'packages/template/*'],
       coverage: {
-        reporter: ['text', 'json-summary', 'json'],
+        reporter: ['text', 'html', 'json-summary', 'json'],
         provider: 'v8'
       }
     }
