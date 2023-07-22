@@ -18,8 +18,7 @@
     "coverage": "cross-env VITE_TESTING_MODE=FULLSTACK yarn clear && vitest run --coverage",
     "link:project": "concurrently \"rvt link locales\" \"rvt link version\"",
     "afterbuild": "yarn link:project && xcopy /s /v /y \".rvt\\manifests\\chrome\\*\" \"dist\"",
-    "watch:metadata": "nodemon --exec \"yarn afterbuild\" --watch src --ext \"ts\"",
-    "test-ci": "vitest run --coverage.enabled --coverage.reporter='text-summary'",
+    "watch:metadata": "nodemon --exec \"yarn afterbuild\" --watch src --ext \"ts\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -96,7 +95,7 @@
     "tailwindcss": "^3.3.2",
     "tsc": "^2.0.4",
     "typescript": "^5.1.6",
-    "vite": "^4.4.3",
+    "vite": "^4.4.6",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.33.0"
   }
