@@ -21,7 +21,8 @@ dist-ssr
 **/.rvt/**/compiled
 
 # Vitest
-coverage/**
+coverage/*
+!coverage/coverage*.json
 **/__snapshots__/**
 *.snap
 **/*timestamp*
