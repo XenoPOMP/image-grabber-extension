@@ -1,3 +1,9 @@
+<style>
+    img.preview {
+        width: min(75%, 300px)
+    }
+</style>
+
 # Grab the Images
 
 <img src="https://github.com/XenoPOMP/image-grabber-extension/workflows/Testing/badge.svg" alt="Vitest passing" />
@@ -5,12 +11,6 @@
 Chrome extension based on `react-vite-template`.
 
 <hr>
-
-<style>
-    img.preview {
-        width: min(75%, 300px)
-    }
-</style>
 
 ## Image grabbing
 
