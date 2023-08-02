@@ -6,6 +6,26 @@ Chrome extension based on `react-vite-template`.
 
 <hr>
 
+<style>
+    img.preview {
+        width: min(75%, 300px)
+    }
+</style>
+
+## Image grabbing
+
 <p align='center'>
-<video src='./.rvt/media/video.mp4' style='width: min(75%, 400px)'>
+<img class='preview' src='./.rvt/media/preview-1.gif'>
+</p>
+
+## Masonry grid column settings
+
+<p align='center'>
+<img class='preview' src='./.rvt/media/preview-5.gif'>
+</p>
+
+## Image overlay
+
+<p align='center'>
+<img class='preview' src='./.rvt/media/preview-4.gif'>
 </p>
